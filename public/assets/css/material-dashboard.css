@@ -20797,15 +20797,15 @@ fieldset:disabled .btn {
 }
 
 .dark-version {
-  background-color: #171717 !important;
+  background-color: #1a2035 !important;
 }
 
 .dark-version .main-content {
-  background-color: #171717 !important;
+  background-color: #1a2035 !important;
 }
 
 .dark-version .sidenav {
-  background: #333 !important;
+  background: #1f283e !important;
 }
 
 .dark-version .sidenav.bg-transparent {
@@ -21006,7 +21006,7 @@ fieldset:disabled .btn {
 }
 
 body.dark-version {
-  color: rgba(255, 255, 255) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 @media (min-width: 992px) {
@@ -26717,6 +26717,6 @@ pre[class*="language-"] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E14D2A;
+  background: #ff8000;
   border-radius: 50px;
 }
