@@ -1,8 +1,14 @@
 import express from "express";
 import { create } from "express-handlebars";
-
+import flash from "connect-flash";
+import session from "express-session";
+import mongoose from "mongoose";
 // Routes
 import UserRoutes from "./routes/user.js";
+import AuthRoutes from "./routes/auth.js";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -15,11 +21,31 @@ const hbs = create({
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", "./views");
+app.use(express.urlencoded({ extented: true }));
 
 app.use(express.static("public"));
+app.use(express.urlencoded({ extented: true }));
+app.use(express.json());
+app.use(
+	session({ secret: "FarruxDEV", reserve: false, saveUninitialized: false })
+);
+app.use(flash());
 
 app.use(UserRoutes);
+app.use(AuthRoutes);
 
 const PORT = process.env.PORT || 7700;
 
-app.listen(PORT, () => console.log("Server listening on port", PORT));
+const startApp = () => {
+	try {
+		mongoose.set("strictQuery", false);
+		mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, () =>
+			console.log("Mongo DB connected")
+		);
+		const PORT = process.env.PORT || 7700;
+		app.listen(PORT, () => console.log(`Server is running ${PORT}`));
+	} catch (error) {
+		console.log(error);
+	}
+};
+startApp();

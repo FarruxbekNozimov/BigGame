@@ -7,16 +7,4 @@ router.get("/", (req, res) => {
 	});
 });
 
-router.get("/login", (req, res) => {
-	res.render("login", {
-		isLogin: true,
-	});
-});
-
-router.get("/register", (req, res) => {
-	res.render("register", {
-		isLogin: true,
-	});
-});
-
 export default router;

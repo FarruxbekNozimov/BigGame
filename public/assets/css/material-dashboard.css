@@ -26717,6 +26717,12 @@ pre[class*="language-"] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff8000;
+  background: #5289ff;
   border-radius: 50px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

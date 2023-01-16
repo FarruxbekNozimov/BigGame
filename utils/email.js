@@ -1,6 +1,9 @@
 import nodemailer from "nodemailer";
 
-function sendCodeToGmail(emailName, code) {
+function randomCode(min = 1000, max = 9999) {
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+function sendCodeToGmail(emailName, code, username) {
 	const transporter = nodemailer.createTransport({
 		service: "gmail",
 		auth: {
@@ -13,7 +16,7 @@ function sendCodeToGmail(emailName, code) {
 		from: "biggame170@gmail.com",
 		to: emailName,
 		subject: "Confirmation Code",
-		html: `<h1>Code : ${code}</h1>`,
+		html: `<h1>Hello ${username} !!!<br>Confirmation code : ${code}</h1>`,
 	};
 
 	transporter.sendMail(mailOptions, function (error, info) {
@@ -25,4 +28,4 @@ function sendCodeToGmail(emailName, code) {
 	});
 }
 
-sendCodeToGmail("farruxbeknozimov@gmail.com", 1290);
+export { sendCodeToGmail, randomCode };
