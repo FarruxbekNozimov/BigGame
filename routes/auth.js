@@ -1,19 +1,33 @@
 import { Router } from "express";
 import { sendCodeToGmail, randomCode } from "../utils/email.js";
-import User from "../models/User.js";
+import { generateJWTtoken } from "../utils/token.js";
+import { hashing, unhashing } from "../utils/hashing.js";
 const router = Router();
+
+// Import Models
+import User from "../models/User.js";
+import Setting from "../models/Setting.js";
 
 // Vaqtinchalik variables
 let getCode = 0;
 let userData = "";
 
+router.get("/logout", (req, res) => {
+	res.clearCookie("token");
+	res.redirect("/login");
+});
+
 router.get("/login", (req, res) => {
+	// req.cookies.token ? res.redirect("/") : "";
 	res.render("login", {
 		isLogin: true,
+		loginError: req.flash("loginError"),
+		userData,
 	});
 });
 
 router.get("/register", (req, res) => {
+	req.cookies.token ? res.redirect("/") : "";
 	res.render("register", {
 		isLogin: true,
 		loginError: req.flash("loginError"),
@@ -40,26 +54,63 @@ router.post("/register", async (req, res) => {
 		req.flash("loginError", "Password must least 8 characters");
 		return res.redirect("/register");
 	}
-	// const usernameExist = await User.findOne({ username });
-	// const emailExist = await User.findOne({ email });
-	// if (usernameExist) {
-	// 	req.flash("loginError", "This username already use");
-	// 	return res.redirect("/register");
-	// }
-	// if (emailExist) {
-	// 	req.flash("loginError", "This email already exists");
-	// 	return res.redirect("/register");
-	// }
+	const usernameExist = await User.findOne({ username });
+	const emailExist = await User.findOne({ email });
+	if (usernameExist) {
+		req.flash("loginError", "This username already use");
+		return res.redirect("/register");
+	}
+	if (emailExist) {
+		req.flash("loginError", "This email already exists");
+		return res.redirect("/register");
+	}
+
 	if (!getCode) {
 		getCode = randomCode();
 		sendCodeToGmail(email, getCode, username);
-		res.redirect("/register");
+		return res.redirect("/register");
 	}
 	if (userCode && getCode == userCode) {
-		console.log(userData);
+		userData.password = hashing(userData.password);
 		const user = await User.create(userData);
-		console.log(user);
+		// const setting = await Setting.create({
+		// 	userId: userData.id,
+		// 	fullName: "",
+		// 	description: "",
+		// });
+		const token = generateJWTtoken(user._id);
+		res.cookie("token", token, { httpOnly: true, secure: true });
+		return res.redirect("/");
+	} else {
+		req.flash("loginError", "Code is invalid");
+		return res.redirect("/register");
 	}
+});
+
+router.post("/login", async (req, res) => {
+	let { username, password } = req.body;
+	userData = {
+		username: username,
+		password: password,
+	};
+
+	if (!username || !password) {
+		req.flash("loginError", "All fields must be required");
+		return res.redirect("/login");
+	}
+	password = hashing(password);
+	const existUser = await User.findOne({ username });
+	if (!existUser) {
+		req.flash("loginError", "User not found");
+		return res.redirect("/login");
+	}
+	if (existUser.password != password) {
+		req.flash("loginError", "Password is Wrong");
+		return res.redirect("/login");
+	}
+	const token = generateJWTtoken(existUser._id);
+	res.cookie("token", token, { httpOnly: true, secure: true });
+	return res.redirect("/");
 });
 
 export default router;

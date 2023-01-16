@@ -2,7 +2,7 @@
 	<div
 		class="page-header align-items-start min-vh-100"
 		style="
-					background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');
+					background-image: url('/img/bg.avif');
 				"
 	>
 		<span class="mask bg-gradient-dark opacity-6"></span>
@@ -37,14 +37,22 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<form role="form" class="text-start">
-								<div class="input-group input-group-outline my-3">
-									<label class="form-label">Email</label>
-									<input type="email" class="form-control" />
+							{{#if loginError}}
+								<div class="alert alert-primary alert-dismissible text-white" role="alert">
+									<strong class="text-sm">{{loginError}} !!!</strong>
+									<button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
 								</div>
-								<div class="input-group input-group-outline mb-3">
+							{{/if}}
+							<form action="/login" method="POST">
+								<div class="input-group input-group-outline mb-3 {{#if userData.username}} is-focused{{/if}}">
+									<label class="form-label">Username</label>
+									<input type="text" class="form-control" name="username" value="{{userData.username}}"/>
+								</div>
+								<div class="input-group input-group-outline mb-3 {{#if userData.password}} is-focused{{/if}}">
 									<label class="form-label">Password</label>
-									<input type="password" class="form-control" />
+									<input type="password" class="form-control" name="password" value="{{userData.password}}"/>
 								</div>
 								<div
 									class="form-check form-switch d-flex align-items-center mb-3"
@@ -61,7 +69,7 @@
 								</div>
 								<div class="text-center">
 									<button
-										type="button"
+										type="submit"
 										class="btn bg-gradient-info w-100 my-4 mb-2"
 									>
 										Sign in
@@ -70,8 +78,8 @@
 								<p class="mt-4 text-sm text-center">
 									Don't have an account?
 									<a
-										href="../pages/sign-up.html"
-										class="text-primary text-gradient font-weight-bold"
+										href="/register"
+										class="text-info text-gradient font-weight-bold"
 									>Sign up</a>
 								</p>
 							</form>

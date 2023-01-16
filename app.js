@@ -1,12 +1,14 @@
 import express from "express";
 import { create } from "express-handlebars";
-import flash from "connect-flash";
-import session from "express-session";
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
+import flash from "connect-flash";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+
 // Routes
 import UserRoutes from "./routes/user.js";
 import AuthRoutes from "./routes/auth.js";
-import * as dotenv from "dotenv";
 
 dotenv.config();
 
@@ -26,6 +28,8 @@ app.use(express.urlencoded({ extented: true }));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extented: true }));
 app.use(express.json());
+app.use(cookieParser());
+
 app.use(
 	session({ secret: "FarruxDEV", reserve: false, saveUninitialized: false })
 );
