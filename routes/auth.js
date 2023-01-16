@@ -18,7 +18,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-	// req.cookies.token ? res.redirect("/") : "";
+	req.cookies.token ? res.redirect("/") : "";
 	res.render("login", {
 		isLogin: true,
 		loginError: req.flash("loginError"),

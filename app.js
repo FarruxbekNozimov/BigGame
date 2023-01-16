@@ -35,8 +35,8 @@ app.use(
 );
 app.use(flash());
 
-app.use(UserRoutes);
 app.use(AuthRoutes);
+app.use(UserRoutes);
 
 const PORT = process.env.PORT || 7700;
 
