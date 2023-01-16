@@ -7,6 +7,7 @@ const router = Router();
 // Import Models
 import User from "../models/User.js";
 import Setting from "../models/Setting.js";
+import downloadImg from "../utils/download.js";
 
 // Vaqtinchalik variables
 let getCode = 0;
@@ -73,11 +74,20 @@ router.post("/register", async (req, res) => {
 	if (userCode && getCode == userCode) {
 		userData.password = hashing(userData.password);
 		const user = await User.create(userData);
-		// const setting = await Setting.create({
-		// 	userId: userData.id,
-		// 	fullName: "",
-		// 	description: "",
-		// });
+		const setting = await Setting.create({
+			userId: user.id,
+			fullName: "",
+			gender: "",
+			description: "",
+			image: "/img/user/default-user.png",
+			bgImage: "https://picsum.photos/200/300",
+			mobilePhone: "",
+			location: "Uzbekistan",
+			telegramLink: "",
+			instagramLink: "",
+			facebookLink: "",
+			websiteLink: "",
+		});
 		const token = generateJWTtoken(user._id);
 		res.cookie("token", token, { httpOnly: true, secure: true });
 		return res.redirect("/");

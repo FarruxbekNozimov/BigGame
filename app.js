@@ -6,6 +6,10 @@ import flash from "connect-flash";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 
+// MIDLEWARES
+import varMiddleware from "./middleware/var.js";
+import userMiddleware from "./middleware/user.js";
+
 // Routes
 import UserRoutes from "./routes/user.js";
 import AuthRoutes from "./routes/auth.js";
@@ -19,6 +23,10 @@ const app = express();
 const hbs = create({
 	defaultLayout: "main",
 	extname: "hbs",
+	runtimeOptions: {
+		allowProtoPropertiesByDefault: true,
+		allowProtoMethodsByDefault: true,
+	},
 });
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
@@ -34,6 +42,10 @@ app.use(
 	session({ secret: "FarruxDEV", reserve: false, saveUninitialized: false })
 );
 app.use(flash());
+
+// Use Middleware
+app.use(varMiddleware);
+app.use(userMiddleware);
 
 app.use(AuthRoutes);
 app.use(UserRoutes);

@@ -4,6 +4,7 @@ const SettingSchema = new Schema(
 	{
 		userId: { type: String, required: true, unique: true },
 		fullName: { type: String },
+		gender: { type: String },
 		description: { type: String },
 		image: { type: String },
 		bgImage: { type: String },
