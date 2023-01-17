@@ -26827,6 +26827,7 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   cursor: pointer;
   transition: 1s;
+  border: 1px solid black;
 }
 
 .fileUploadLabel:hover {
@@ -26837,12 +26838,7 @@ input::-webkit-inner-spin-button {
   position: absolute;
   top: 5px;
   background: #fff;
-  border: 2px solid white;
   left: 5px;
   border-radius: 10px;
   transition: 1s;
-}
-
-.bg-image:hover {
-  border: 2px solid black;
 }

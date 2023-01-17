@@ -1,12 +1,13 @@
 import { Router } from "express";
 import authMiddleware from "../middleware/auth.js";
 const router = Router();
-import fs from "fs";
-import path from "path";
+import multer from "multer";
+const upload = multer();
+
 // Import Models
 import User from "../models/User.js";
 import Setting from "../models/Setting.js";
-import downloadImg from "../../UY/utils/downloadImg.js";
+import downloadImg from "../utils/download.js";
 
 router.get("/", authMiddleware, (req, res) => {
 	res.render("index", {
@@ -25,38 +26,47 @@ router.get("/profile", authMiddleware, async (req, res) => {
 	});
 });
 
-router.post("/profile", authMiddleware, async (req, res) => {
-	let { fullName, gender, mobilePhone, location, description } = req.body;
-	let { userImage, bgImage } = req.files;
+let cpUpload = upload.fields([
+	{ name: "userImage", maxCount: 1 },
+	{ name: "bgImage", maxCount: 1 },
+]);
 
-	try {
-		if (!userImage) userImage = "/img/user/default-user.png";
-		else
-			fs.writeFile(
-				path.resolve("./public/img/user", req.user._id + ".png"),
-				userImage.data,
-				"binary",
-				function (err) {
-					if (err) console.log(err);
-					else console.log("Saved");
-				}
-			);
-		if (!bgImage) bgImage = "/img/bg.avif";
-		else
-			fs.writeFile(
-				path.resolve("./public/img/user", req.user._id + "-bg" + ".png"),
-				bgImage.data,
-				"binary",
-				function (err) {
-					if (err) console.log(err);
-					else console.log("Saved");
-				}
-			);
-	} catch (error) {
-		console.log("File error : ", error);
-	}
-	console.log(fullName, gender, mobilePhone, location, description);
-	res.send(`<img src="data:${userImage.mimetype};base64" />`);
+router.post("/profile", cpUpload, async (req, res, next) => {
+	console.log(req.files);
+
+	// let { fullName, gender, mobilePhone, location, description } = req.body;
+	// let { userImage, bgImage } = req.files;
+	// try {
+	// 	if (!userImage) userImage = "default-user.png";
+	// 	else
+	// 		fs.writeFile(
+	// 			path.resolve("./public/img/user", req.user._id + ".png"),
+	// 			userImage.data,
+	// 			"binary",
+	// 			function (err) {
+	// 				if (err) console.log(err);
+	// 				else console.log("Saved");
+	// 			}
+	// 		);
+	// 	if (!bgImage) bgImage = "bg.png";
+	// 	else
+	// 		fs.writeFile(
+	// 			path.resolve("./public/img/user", req.user._id + "-bg" + ".png"),
+	// 			bgImage.data,
+	// 			"binary",
+	// 			function (err) {
+	// 				if (err) console.log(err);
+	// 				else console.log("Saved");
+	// 			}
+	// 		);
+	// } catch (error) {
+	// 	console.log("File error : ", error);
+	// }
+	// console.log(fullName, gender, mobilePhone, location, description);
+	// res.send(
+	// 	`<img src="/img/user/${req.user._id}.png" />
+	// 	<img src="/img/user/${req.user._id}-bg.png" />`
+	// );
 });
 
 router.get("/:username", authMiddleware, async (req, res) => {
