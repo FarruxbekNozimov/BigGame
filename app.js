@@ -5,6 +5,8 @@ import * as dotenv from "dotenv";
 import flash from "connect-flash";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import hbsHelpers from "./utils/hbsHelpers.js";
+import fileUpload from "express-fileupload";
 
 // MIDLEWARES
 import varMiddleware from "./middleware/var.js";
@@ -23,6 +25,7 @@ const app = express();
 const hbs = create({
 	defaultLayout: "main",
 	extname: "hbs",
+	helpers: hbsHelpers,
 	runtimeOptions: {
 		allowProtoPropertiesByDefault: true,
 		allowProtoMethodsByDefault: true,
@@ -33,6 +36,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 app.use(express.urlencoded({ extented: true }));
 
+app.use(fileUpload());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extented: true }));
 app.use(express.json());
