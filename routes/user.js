@@ -16,7 +16,7 @@ router.get("/", authMiddleware, (req, res) => {
 router.get("/profile", authMiddleware, async (req, res) => {
 	let user = await User.findById(req.user._id);
 	let userSetting = await Setting.findOne({ userId: user._id });
-	res.render("profile", {
+	res.render("userSetting", {
 		isProfile: true,
 		user: req.user,
 		userSetting: userSetting,

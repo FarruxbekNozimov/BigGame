@@ -20851,7 +20851,8 @@ fieldset:disabled .btn {
 }
 
 .dark-version .bg-gradient-dark {
-  background-image: linear-gradient(195deg, #323a54, #1a2035);
+  /* background-image: linear-gradient(195deg, #323a54, #1a2035); */
+  background: #000;
 }
 
 .dark-version .card,
@@ -26725,4 +26726,36 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.profileInput {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid #999;
+}
+
+.profileInput:focus {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  border-color: #7b809a;
+  box-shadow: 0 0 10px #7b809a;
+}
+
+.profileSelect {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  padding: 5px 14px;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid #999;
+}
+
+.profileSelect:focus {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  border-color: #7b809a;
+  box-shadow: 0 0 10px #7b809a;
 }
