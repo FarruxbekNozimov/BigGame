@@ -1,8 +1,8 @@
 import { Router } from "express";
 import authMiddleware from "../middleware/auth.js";
 const router = Router();
-import multer from "multer";
-const upload = multer();
+// import multer from "multer";
+// const upload = multer();
 
 // Import Models
 import User from "../models/User.js";
@@ -26,39 +26,28 @@ router.get("/profile", authMiddleware, async (req, res) => {
 	});
 });
 
-let cpUpload = upload.fields([
-	{ name: "userImage", maxCount: 1 },
-	{ name: "bgImage", maxCount: 1 },
-]);
+// let cpUpload = upload.fields([
+// 	{ name: "userImage", maxCount: 1 },
+// 	{ name: "bgImage", maxCount: 1 },
+// ]);
 
-router.post("/profile", cpUpload, async (req, res, next) => {
+router.post("/profile", (req, res) => {
 	console.log(req.files);
 
 	// let { fullName, gender, mobilePhone, location, description } = req.body;
-	// let { userImage, bgImage } = req.files;
+	// let { userImage } = req.files;
 	// try {
 	// 	if (!userImage) userImage = "default-user.png";
-	// 	else
-	// 		fs.writeFile(
-	// 			path.resolve("./public/img/user", req.user._id + ".png"),
-	// 			userImage.data,
-	// 			"binary",
-	// 			function (err) {
-	// 				if (err) console.log(err);
-	// 				else console.log("Saved");
-	// 			}
-	// 		);
-	// 	if (!bgImage) bgImage = "bg.png";
-	// 	else
-	// 		fs.writeFile(
-	// 			path.resolve("./public/img/user", req.user._id + "-bg" + ".png"),
-	// 			bgImage.data,
-	// 			"binary",
-	// 			function (err) {
-	// 				if (err) console.log(err);
-	// 				else console.log("Saved");
-	// 			}
-	// 		);
+	// 	elses;
+	// 	fs.writeFile(
+	// 		path.resolve("./public/img/user", req.user._id + ".png"),
+	// 		userImage.data,
+	// 		"binary",
+	// 		function (err) {
+	// 			if (err) console.log(err);
+	// 			else console.log("Saved");
+	// 		}
+	// 	);
 	// } catch (error) {
 	// 	console.log("File error : ", error);
 	// }

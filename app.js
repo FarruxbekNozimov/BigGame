@@ -6,7 +6,7 @@ import flash from "connect-flash";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import hbsHelpers from "./utils/hbsHelpers.js";
-// import fileUpload from "express-fileupload";
+import fileUpload from "express-fileupload";
 
 // MIDLEWARES
 import varMiddleware from "./middleware/var.js";
@@ -36,7 +36,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 app.use(express.urlencoded({ extented: true }));
 
-// app.use(fileUpload());
+app.use(fileUpload());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extented: true }));
 app.use(express.json());

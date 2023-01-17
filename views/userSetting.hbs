@@ -3,21 +3,12 @@
 	{{>navbar}}
 	<!-- End Navbar -->
 	<div class="container-fluid px-2 px-md-4">
-		<form action="/profile" method="POST" enctype="multipart/form-data" class="profileForm gap-3 ">
 			<div
 				class="page-header min-height-300 border-radius-xl mt-4"
-				style="background-image: url({{userSetting.bgImage}});"
+				style="background-image: url('https://picsum.photos/800/300');"
 			>
 				<span class="mask bg-gradient-info opacity-3"></span>
-				<div class="image-upload bg-image">
-					<label for="file-input" class="fileUploadLabel">
-						<img src="/img/fileUploadIcon.png" alt="" height="25px">
-					</label>
-					<input id="file-input" type="file" name="bgImage" accept="image/*" class="profileFile">
-				</div>
 			</div>
-			button
-		</form>
 		<form action="/profile" method="POST" enctype="multipart/form-data" class="profileForm gap-3 ">
 			<div class="card card-body mx-3 mx-md-4 mt-n6">
 				<div class="row gx-4 mb-2">
@@ -37,7 +28,7 @@
 							</h5>
 							<div class="image-upload">
 								<label for="file-input" class="fileUploadLabel">
-									<img src="/img/fileUploadIcon.png" alt="" height="25px">
+									<img src="/img/fileUploadIcon.png" alt="" height="20px">
 								</label>
 								<input id="file-input" type="file" name="userImage" accept="image/*" class="profileFile">
 							</div>

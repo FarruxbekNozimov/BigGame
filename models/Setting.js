@@ -7,7 +7,6 @@ const SettingSchema = new Schema(
 		gender: { type: String },
 		description: { type: String },
 		image: { type: String },
-		bgImage: { type: String },
 		mobilePhone: { type: String },
 		location: { type: String },
 		telegramLink: { type: String },
