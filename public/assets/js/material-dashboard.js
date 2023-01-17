@@ -1,5 +1,4 @@
 "use strict";
-console.log("salom");
 (function () {
 	var isWindows = navigator.platform.indexOf("Win") > -1 ? true : false;
 

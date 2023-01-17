@@ -1,8 +1,8 @@
 import { Router } from "express";
 import authMiddleware from "../middleware/auth.js";
 const router = Router();
-// import multer from "multer";
-// const upload = multer();
+import fs from "fs";
+import path from "path";
 
 // Import Models
 import User from "../models/User.js";
@@ -26,36 +26,35 @@ router.get("/profile", authMiddleware, async (req, res) => {
 	});
 });
 
-// let cpUpload = upload.fields([
-// 	{ name: "userImage", maxCount: 1 },
-// 	{ name: "bgImage", maxCount: 1 },
-// ]);
-
 router.post("/profile", (req, res) => {
-	console.log(req.files);
+	console.log(req.body, req.files);
 
-	// let { fullName, gender, mobilePhone, location, description } = req.body;
-	// let { userImage } = req.files;
-	// try {
-	// 	if (!userImage) userImage = "default-user.png";
-	// 	elses;
-	// 	fs.writeFile(
-	// 		path.resolve("./public/img/user", req.user._id + ".png"),
-	// 		userImage.data,
-	// 		"binary",
-	// 		function (err) {
-	// 			if (err) console.log(err);
-	// 			else console.log("Saved");
-	// 		}
-	// 	);
-	// } catch (error) {
-	// 	console.log("File error : ", error);
-	// }
-	// console.log(fullName, gender, mobilePhone, location, description);
-	// res.send(
-	// 	`<img src="/img/user/${req.user._id}.png" />
-	// 	<img src="/img/user/${req.user._id}-bg.png" />`
-	// );
+	let { userImageURL, fullName, gender, mobilePhone, location, description } =
+		req.body;
+	let userImage = req.files ? req.files["userImage"] : null;
+	try {
+		if (userImage) {
+			fs.writeFile(
+				path.resolve("./public/img/user", req.user._id + ".png"),
+				userImage.data,
+				"binary",
+				function (err) {
+					if (err) console.log(err);
+					else console.log("Saved");
+				}
+			);
+		} else if (userImageURL.includes("https://")) {
+			downloadImg(
+				userImageURL,
+				"./public/img/user/" + req.user._id + ".png",
+				() => console.log("Saved")
+			);
+		}
+	} catch (error) {
+		console.log("File error : ", error);
+	}
+	console.log(fullName, gender, mobilePhone, location, description);
+	res.send(`<img src="/img/user/${req.user._id}.png" />`);
 });
 
 router.get("/:username", authMiddleware, async (req, res) => {
