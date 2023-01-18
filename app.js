@@ -13,8 +13,9 @@ import varMiddleware from "./middleware/var.js";
 import userMiddleware from "./middleware/user.js";
 
 // Routes
-import UserRoutes from "./routes/user.js";
 import AuthRoutes from "./routes/auth.js";
+import UserRoutes from "./routes/user.js";
+import GameRoutes from "./routes/game.js";
 
 dotenv.config();
 
@@ -52,6 +53,7 @@ app.use(varMiddleware);
 app.use(userMiddleware);
 
 app.use(AuthRoutes);
+app.use(GameRoutes);
 app.use(UserRoutes);
 
 const PORT = process.env.PORT || 7700;
