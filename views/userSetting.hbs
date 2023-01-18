@@ -15,7 +15,7 @@
 					<div class="col-auto">
 						<div class="avatar avatar-xl position-relative">
 							<img
-								src="{{userSetting.image}}"
+								src="/img/user/{{userSetting.image}}"
 								alt="profile_image"
 								class="w-100 border-radius-lg shadow-sm bg-gradient-light p-1"
 							/>
@@ -153,7 +153,7 @@
 												</div>
 											</div>
 										</div>
-										<button class="btn bg-gradient-info w-25 mb-0 toast-btn" type="submit" data-target="infoToast">SAVE</button>
+										<button class="btn bg-gradient-info w-25 mb-0 toast-btn profileSendBtn" type="submit" data-target="infoToast"{{#if settingError}} disabled {{/if}}>SAVE</button>
 								</div>
 							</div>
 						</div>
@@ -178,30 +178,30 @@
 										<div class="row">
 											<div class="col-12 col-xl-6">
 												<div class="mb-3 d-block">
-													<h6 class="text-info m-0">User Name</h6>
-													<input type="text" class="profileInput" name="username" value="{{user.username}}" placeholder="Username"/>
+													<h6 class="text-info m-0">Username</h6>
+													<input type="text" class="profileInput" name="username" value="{{user.username}}" placeholder="Username" id="profileUserName"/>
 												</div>
 											</div>
 											<div class="col-12 col-xl-6">
 												<div class="mb-3 d-block">
 													<h6 class="text-info m-0">Email</h6>
-													<input type="text" class="profileInput" name="email" value="{{user.email}}" placeholder="Email"/>
+													<input type="text" class="profileInput" name="email" value="{{user.email}}" placeholder="Email" id="profileEmail"/>
 												</div>
 											</div>
 											<div class="col-12 col-xl-6">
 												<div class="mb-3 d-block">
 													<h6 class="text-info m-0">Password</h6>
-													<input type="text" class="profileInput" name="password" value="{{user.password}}" placeholder="Password"/>
+													<input type="password" class="profileInput" name="password" value="{{user.password}}" placeholder="Password" id="profilePassword"/>
 												</div>
 											</div>
 											<div class="col-12 col-xl-6">
 												<div class="mb-3 d-block">
 													<h6 class="text-info m-0">Confirm password</h6>
-													<input type="text" class="profileInput" name="passwordCon" value="{{user.password}}" placeholder="Confirm password"/>
+													<input type="password" class="profileInput" name="passwordCon" value="{{user.password}}" placeholder="Confirm password" id="profilePasswordCon"/>
 												</div>
 											</div>
 										</div>
-										<button class="btn bg-gradient-info w-25 mb-0 toast-btn" type="submit" data-target="infoToast">SAVE</button>
+										<button class="btn bg-gradient-info w-25 mb-0 toast-btn profileSendBtn" type="submit" data-target="infoToast"{{#if settingError}} disabled {{/if}}>SAVE</button>
 								</div>
 							</div>
 						</div>
@@ -251,7 +251,7 @@
 												</div>
 											</div>
 										</div>
-										<button class="btn bg-gradient-info w-25 mb-0 toast-btn" type="submit" data-target="infoToast">SAVE</button>
+										<button class="btn bg-gradient-info w-25 mb-0 toast-btn profileSendBtn" type="submit" data-target="infoToast"{{#if settingError}} disabled {{/if}}>SAVE</button>
 								</div>
 							</div>
 						</div>
@@ -276,7 +276,7 @@
 								</div>
 								<div class="card-body">	
 									<div class="row">
-										<button class="btn bg-gradient-danger w-25 toast-btn" type="submit" data-target="infoToast">DELETE USER</button>
+										<button class="btn bg-gradient-danger w-25 toast-btn" profileSendBtn type="submit" data-target="infoToast"{{#if settingError}} disabled {{/if}}>DELETE USER</button>
 									</div>
 								</div>
 							</div>

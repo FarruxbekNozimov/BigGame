@@ -20,20 +20,36 @@ router.get("/", authMiddleware, (req, res) => {
 router.get("/profile", authMiddleware, async (req, res) => {
 	let user = await User.findById(req.user._id);
 	let userSetting = await Setting.findOne({ userId: user._id });
-	req.user.password = unhashing(req.user.password);
 	res.render("userSetting", {
 		isProfile: true,
-		user: req.user,
+		user: { ...req.user, password: unhashing(req.user.password) },
 		userSetting: userSetting,
+		settingError: req.flash("settingError"),
 	});
 });
 
-router.post("/profile", (req, res) => {
+router.post("/profile", async (req, res) => {
 	console.log(req.body);
-	let { userImageURL, fullName, gender, mobilePhone, location, description } =
-		req.body;
-		
-
+	let {
+		userImageURL,
+		fullName,
+		gender,
+		mobilePhone,
+		location,
+		description,
+		username,
+		email,
+		password,
+		passwordCon,
+		telegramLink,
+		instagramLink,
+		facebookLink,
+		websiteLink,
+	} = req.body;
+	if (password != passwordCon) {
+		req.flash("settingError", "Passwords do not match");
+		return res.redirect("/profile");
+	}
 	// IMAGE DOWNLOADER
 	let userImage = req.files ? req.files["userImage"] : null;
 	try {
@@ -57,6 +73,29 @@ router.post("/profile", (req, res) => {
 	} catch (error) {
 		console.log("File error : ", error);
 	}
+	// UPDATE ALL
+	password = hashing(password);
+	let updateUser = await User.findOneAndUpdate(
+		req.user._id,
+		{ username, email, password },
+		{ upsert: true }
+	);
+	let updateSetting = await Setting.findOneAndUpdate(
+		{ userId: req.user._id },
+		{
+			fullName,
+			gender,
+			description,
+			image: req.user._id + ".png",
+			mobilePhone,
+			location,
+			telegramLink,
+			instagramLink,
+			facebookLink,
+			websiteLink,
+		},
+		{ upsert: true }
+	);
 	res.redirect("/profile");
 });
 
