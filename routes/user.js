@@ -8,6 +8,7 @@ import path from "path";
 import User from "../models/User.js";
 import Setting from "../models/Setting.js";
 import downloadImg from "../utils/download.js";
+import { hashing, unhashing } from "../utils/hashing.js";
 
 router.get("/", authMiddleware, (req, res) => {
 	res.render("index", {
@@ -19,6 +20,7 @@ router.get("/", authMiddleware, (req, res) => {
 router.get("/profile", authMiddleware, async (req, res) => {
 	let user = await User.findById(req.user._id);
 	let userSetting = await Setting.findOne({ userId: user._id });
+	req.user.password = unhashing(req.user.password);
 	res.render("userSetting", {
 		isProfile: true,
 		user: req.user,
@@ -27,10 +29,12 @@ router.get("/profile", authMiddleware, async (req, res) => {
 });
 
 router.post("/profile", (req, res) => {
-	console.log(req.body, req.files);
-
+	console.log(req.body);
 	let { userImageURL, fullName, gender, mobilePhone, location, description } =
 		req.body;
+		
+
+	// IMAGE DOWNLOADER
 	let userImage = req.files ? req.files["userImage"] : null;
 	try {
 		if (userImage) {
@@ -53,8 +57,7 @@ router.post("/profile", (req, res) => {
 	} catch (error) {
 		console.log("File error : ", error);
 	}
-	console.log(fullName, gender, mobilePhone, location, description);
-	res.send(`<img src="/img/user/${req.user._id}.png" />`);
+	res.redirect("/profile");
 });
 
 router.get("/:username", authMiddleware, async (req, res) => {
