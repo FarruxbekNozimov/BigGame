@@ -18,6 +18,12 @@ router.get("/games", _auth["default"], function (req, res) {
     user: req.user
   });
 });
+router.get("/games/bugvsdev/", _auth["default"], function (req, res) {
+  res.render("games/bugvsdev", {
+    isGames: true,
+    user: req.user
+  });
+});
 router.get("/games/bugvsdev/easy", _auth["default"], function (req, res) {
   res.render("games/buvsdeveasy", {
     isGames: true,
