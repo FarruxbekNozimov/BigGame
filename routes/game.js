@@ -9,8 +9,8 @@ router.get("/games", authMiddleware, (req, res) => {
 	});
 });
 
-router.get("/games/tictactoe", authMiddleware, (req, res) => {
-	res.render("games/tictactoe", {
+router.get("/games/bugvsdev/easy", authMiddleware, (req, res) => {
+	res.render("games/buvsdeveasy", {
 		isGames: true,
 		user: req.user,
 	});

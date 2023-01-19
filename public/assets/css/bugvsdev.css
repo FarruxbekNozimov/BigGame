@@ -1,9 +1,9 @@
-/* body {
+body {
   background: url("/assets/img/board.png") no-repeat center center fixed;
   background-size: cover;
   background: linear-gradient(90.9deg, rgb(255, 187, 187) -8.8%, rgb(255, 220, 177) 12.4%, rgb(255, 249, 177) 35.6%, rgb(220, 255, 177) 59.6%, rgb(177, 218, 255) 84%, rgb(222, 177, 255) 107.9%);
   background-attachment: fixed;
-} */
+}
 
 .board {
   height: auto;
@@ -28,25 +28,61 @@
 .ticBtns:hover {
   border-radius: 20px;
   transform: rotate(-5deg);
-  background: rgba(90, 0, 255, 0.5);
+  background: rgba(90, 0, 255, 0.7);
 }
 
-.ticBtns.player {
+.ticBtns.bot {
   background: rgba(255, 0, 0, 0.26);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
-  border: 1px solid rgba(255, 0, 0, 1);
+  border: 2px solid rgba(255, 0, 0, 1);
   color: red;
 }
 
-.ticBtns.bot {
-  background: rgba(255, 248, 0, 0.36);
+.ticBtns.bot:hover {
+  background: rgba(255, 0, 0, 0.7);
+}
+
+.ticBtns.player {
+  background: rgba(8, 255, 0, 0.36);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 2px solid rgba(255, 248, 0, 1);
-  color: yellow;
+  backdrop-filter: blur(7.4px);
+  -webkit-backdrop-filter: blur(7.4px);
+  border: 2px solid rgb(5, 155, 0);
+}
+
+.ticBtns.player:hover {
+  background: rgba(8, 255, 0, 0.7);
+}
+
+.reset {
+  position: absolute;
+  background: rgba(0, 255, 255, 0.48);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border: 3px solid rgb(0, 133, 133);
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  font-size: 80px;
+  transition: 1s;
+}
+
+.reset:hover {
+  background: rgb(0, 183, 255);
+}
+
+.winBoard {
+  position: absolute;
+  background: #000;
+  height: 100px;
+  width: 100px;
+  left: -50%;
+  top: -50%;
+  transform: translate(-50%, -50%);
 }

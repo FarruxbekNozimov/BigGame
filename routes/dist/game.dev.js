@@ -18,8 +18,8 @@ router.get("/games", _auth["default"], function (req, res) {
     user: req.user
   });
 });
-router.get("/games/tictactoe", _auth["default"], function (req, res) {
-  res.render("games/tictactoe", {
+router.get("/games/bugvsdev/easy", _auth["default"], function (req, res) {
+  res.render("games/buvsdeveasy", {
     isGames: true,
     user: req.user
   });
