@@ -6,29 +6,47 @@ window.addEventListener("DOMContentLoaded", function () {
 	let winText = document.getElementById("winText");
 	let reset = document.getElementById("reset");
 	let grade = location.href.split("/").pop();
-	playGame();
+	let sanoq = 0;
+	let firstBoard = {};
+	for (let i = 0; i < btns.length; i++) firstBoard[i] = "\u2060";
+	let localGame = JSON.parse(localStorage.getItem("localGame")) || firstBoard;
 
+	playGame();
+	ok.addEventListener("click", () => {
+		resetGame();
+		winBoard.classList.add("d-none");
+	});
 	function playGame() {
 		reset.addEventListener("click", () => {
-			for (let i = 0; i < btns.length; i++) {
-				btns[i].innerHTML = "\u2060";
-				setClassName();
-			}
+			resetGame();
 		});
 		setClassName();
 		for (let i = 0; i < btns.length; i++) {
-			btns[i].innerHTML = "\u2060";
+			btns[i].innerHTML = localGame[i];
+			setClassName();
+			console.log(Object.values(localGame).filter(Boolean));
+			if (localGame) {
+				console.log("sa");
+				let check = checkWin();
+				winnerCheck(check);
+			}
 			btns[i].addEventListener("click", () => {
 				if (btns[i].innerHTML == "\u2060") {
 					btns[i].innerHTML = "🧑‍💻";
-					if (grade == "easy") {
-						easyGame();
-					}
+					setLocalBtns();
 					setClassName();
-					let check = checkWin();
-					if (check == "🧑‍💻") {
-						winBoard.classList.remove("d-none");
-						winText.innerHTML = "You are very good coder 💻";
+					check = checkWin();
+					winnerCheck(check);
+
+					if (grade == "junior") easyGame();
+					setLocalBtns();
+					setClassName();
+
+					check = checkWin();
+					winnerCheck(check);
+
+					winner.value = check;
+					if (checkWin != -1) {
 						return;
 					}
 				}
@@ -124,6 +142,40 @@ window.addEventListener("DOMContentLoaded", function () {
 			return 0;
 		} else {
 			return -1;
+		}
+	}
+	function winnerCheck(check) {
+		if (check == "🧑‍💻") {
+			winBoard.classList.remove("d-none");
+			winBoard.classList.remove("errorWin");
+			winText.innerHTML = "You are very good Junior 💻 👍";
+			return;
+		}
+		if (check == "🪲") {
+			winBoard.classList.remove("d-none");
+			winBoard.classList.add("errorWin");
+			winText.innerHTML = "You are not " + grade + " 😝";
+			return;
+		}
+		if (check == 0) {
+			winBoard.classList.remove("d-none");
+			winBoard.classList.remove("errorWin");
+			winText.innerHTML = "Tie | Bug vs Dev !!!";
+			return;
+		}
+	}
+	function setLocalBtns() {
+		for (let i = 0; i < btns.length; i++) {
+			localGame[i] = btns[i].innerHTML;
+		}
+		localStorage.setItem("localGame", JSON.stringify(localGame));
+	}
+	function resetGame() {
+		for (let i = 0; i < btns.length; i++) {
+			btns[i].innerHTML = "\u2060";
+			setClassName();
+			localStorage.clear();
+			location.reload();
 		}
 	}
 });

@@ -45,6 +45,9 @@ router.post("/register", async (req, res) => {
 		email: email,
 		password: password,
 		role: "user",
+		money: 0,
+		stars: 0,
+		level: 1,
 	};
 
 	if (!username || !email || !password) {

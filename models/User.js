@@ -8,6 +8,7 @@ const UserSchema = new Schema(
 		money: { type: String, required: true },
 		stars: { type: String, required: true },
 		role: { type: String, required: true },
+		level: { type: String, required: true },
 	},
 	{ timestamps: true }
 );

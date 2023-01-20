@@ -8,62 +8,86 @@ window.addEventListener("DOMContentLoaded", function () {
   var winText = document.getElementById("winText");
   var reset = document.getElementById("reset");
   var grade = location.href.split("/").pop();
+  var sanoq = 0;
+  var firstBoard = {};
+
+  for (var i = 0; i < btns.length; i++) {
+    firstBoard[i] = "\u2060";
+  }
+
+  var localGame = JSON.parse(localStorage.getItem("localGame")) || firstBoard;
   playGame();
+  ok.addEventListener("click", function () {
+    resetGame();
+    winBoard.classList.add("d-none");
+  });
 
   function playGame() {
     reset.addEventListener("click", function () {
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].innerHTML = "\u2060";
-        setClassName();
-      }
+      resetGame();
     });
     setClassName();
 
-    var _loop = function _loop(i) {
-      btns[i].innerHTML = "\u2060";
-      btns[i].addEventListener("click", function () {
-        if (btns[i].innerHTML == "\u2060") {
-          btns[i].innerHTML = "🧑‍💻";
+    var _loop = function _loop(_i) {
+      btns[_i].innerHTML = localGame[_i];
+      setClassName();
+      console.log(Object.values(localGame).filter(Boolean));
 
-          if (grade == "easy") {
-            easyGame();
-          }
+      if (localGame) {
+        console.log("sa");
 
+        var _check = checkWin();
+
+        winnerCheck(_check);
+      }
+
+      btns[_i].addEventListener("click", function () {
+        if (btns[_i].innerHTML == "\u2060") {
+          btns[_i].innerHTML = "🧑‍💻";
+          setLocalBtns();
           setClassName();
-          var check = checkWin();
+          check = checkWin();
+          winnerCheck(check);
+          if (grade == "junior") easyGame();
+          setLocalBtns();
+          setClassName();
+          check = checkWin();
+          winnerCheck(check);
+          winner.value = check;
 
-          if (check == "🧑‍💻") {
-            winBoard.classList.remove("d-none");
-            winText.innerHTML = "You are very good coder 💻";
+          if (checkWin != -1) {
             return;
           }
         }
       });
     };
 
-    for (var i = 0; i < btns.length; i++) {
-      _loop(i);
+    for (var _i = 0; _i < btns.length; _i++) {
+      _loop(_i);
     }
   }
 
   function setClassName() {
-    for (var i = 0; i < btns.length; i++) {
-      if (btns[i].innerHTML == "🧑‍💻") {
-        btns[i].classList.remove("bot");
-        btns[i].classList.add("player");
-      } else if (btns[i].innerHTML == "🪲") {
-        btns[i].classList.remove("player");
-        btns[i].classList.add("bot");
+    for (var _i2 = 0; _i2 < btns.length; _i2++) {
+      if (btns[_i2].innerHTML == "🧑‍💻") {
+        btns[_i2].classList.remove("bot");
+
+        btns[_i2].classList.add("player");
+      } else if (btns[_i2].innerHTML == "🪲") {
+        btns[_i2].classList.remove("player");
+
+        btns[_i2].classList.add("bot");
       } else {
-        btns[i].classList.remove("player");
-        btns[i].classList.remove("bot");
+        btns[_i2].classList.remove("player");
+
+        btns[_i2].classList.remove("bot");
       }
     }
   }
 
   function easyGame() {
-    for (var i = 0; i < btns.length; i++) {
-      if (btns[i].innerHTML == "\u2060") {
+    for (var _i3 = 0; _i3 < btns.length; _i3++) {
+      if (btns[_i3].innerHTML == "\u2060") {
         var randBtn = btns[Math.floor(Math.random() * btns.length)];
 
         while (randBtn.innerHTML != "\u2060") {
@@ -97,6 +121,46 @@ window.addEventListener("DOMContentLoaded", function () {
       return 0;
     } else {
       return -1;
+    }
+  }
+
+  function winnerCheck(check) {
+    if (check == "🧑‍💻") {
+      winBoard.classList.remove("d-none");
+      winBoard.classList.remove("errorWin");
+      winText.innerHTML = "You are very good Junior 💻 👍";
+      return;
+    }
+
+    if (check == "🪲") {
+      winBoard.classList.remove("d-none");
+      winBoard.classList.add("errorWin");
+      winText.innerHTML = "You are not " + grade + " 😝";
+      return;
+    }
+
+    if (check == 0) {
+      winBoard.classList.remove("d-none");
+      winBoard.classList.remove("errorWin");
+      winText.innerHTML = "Tie | Bug vs Dev !!!";
+      return;
+    }
+  }
+
+  function setLocalBtns() {
+    for (var _i4 = 0; _i4 < btns.length; _i4++) {
+      localGame[_i4] = btns[_i4].innerHTML;
+    }
+
+    localStorage.setItem("localGame", JSON.stringify(localGame));
+  }
+
+  function resetGame() {
+    for (var _i5 = 0; _i5 < btns.length; _i5++) {
+      btns[_i5].innerHTML = "\u2060";
+      setClassName();
+      localStorage.clear();
+      location.reload();
     }
   }
 });

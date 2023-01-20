@@ -107,13 +107,21 @@ body {
   border: 1px solid rgba(0, 0, 0, 1);
   justify-content: center;
   align-items: center;
-  display: flex;
+  display: block;
   animation: JumpOut 0.7s ease-in-out;
+}
+
+.winner form {
+  width: 90%;
+  margin: 10% auto;
 }
 
 #winText {
   color: #fff !important;
-
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes JumpOut {
@@ -126,4 +134,13 @@ body {
   100% {
     top: 50%;
   }
+}
+
+.errorWin {
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 0, 0, 1);
 }

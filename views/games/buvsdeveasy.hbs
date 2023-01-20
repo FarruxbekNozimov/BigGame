@@ -7,7 +7,12 @@
 	<div class="container-fluid	py-2">
 		<div class="col-lg-12 text-center position-relative">
 			<div class="winner d-none" id="winBoard">
-				<h2 id="winText">asfdasdf</h2>
+				<form action="/games/bugvsdev/junior" method="POST">
+					<button type="submit" class="btn btn-lg bg-gradient-info">OK</button>
+					<br><br><br><br>
+					<input type="hidden" name="winner" id="winner">
+					<h2 id="winText"></h2>
+				</form>
 			</div>
       <button class="reset" id="reset">🔧</button>
 			<div class="board col-lg-6 col-sm-12 mx-auto">

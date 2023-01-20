@@ -24,11 +24,16 @@ router.get("/games/bugvsdev/", _auth["default"], function (req, res) {
     user: req.user
   });
 });
-router.get("/games/bugvsdev/easy", _auth["default"], function (req, res) {
+router.get("/games/bugvsdev/junior", _auth["default"], function (req, res) {
   res.render("games/buvsdeveasy", {
     isGames: true,
     user: req.user
   });
+});
+router.post("/games/bugvsdev/junior", _auth["default"], function (req, res) {
+  var winner = req.body.winner;
+  req.flash("winBoardDis", true);
+  res.redirect("/games/bugvsdev/junior");
 });
 var _default = router;
 exports["default"] = _default;
