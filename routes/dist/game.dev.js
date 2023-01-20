@@ -25,12 +25,23 @@ router.get("/games/bugvsdev/", _auth["default"], function (req, res) {
   });
 });
 router.get("/games/bugvsdev/junior", _auth["default"], function (req, res) {
-  res.render("games/buvsdeveasy", {
+  res.render("games/buvsdevEasy", {
+    isGames: true,
+    user: req.user
+  });
+});
+router.get("/games/bugvsdev/middle", _auth["default"], function (req, res) {
+  res.render("games/bugvsdevMiddle", {
     isGames: true,
     user: req.user
   });
 });
 router.post("/games/bugvsdev/junior", _auth["default"], function (req, res) {
+  var winner = req.body.winner;
+  req.flash("winBoardDis", true);
+  res.redirect("/games/bugvsdev/junior");
+});
+router.post("/games/bugvsdev/middle", _auth["default"], function (req, res) {
   var winner = req.body.winner;
   req.flash("winBoardDis", true);
   res.redirect("/games/bugvsdev/junior");
