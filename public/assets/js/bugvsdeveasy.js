@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", function () {
+if (location.href.includes("games")) {
 	let btns = document.getElementsByClassName("ticBtns");
 	let winBoard = document.getElementById("winBoard");
 	let winText = document.getElementById("winText");
@@ -611,4 +611,4 @@ window.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 	}
-});
+}

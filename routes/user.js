@@ -19,7 +19,6 @@ router.get("/", authMiddleware, (req, res) => {
 
 router.get("/pay", authMiddleware, async (req, res) => {
 	res.render("pay", {
-		isIndex: true,
 		user: req.user,
 	});
 });
@@ -27,6 +26,7 @@ router.get("/pay", authMiddleware, async (req, res) => {
 router.get("/profile", authMiddleware, async (req, res) => {
 	let user = await User.findById(req.user._id);
 	let userSetting = await Setting.findOne({ userId: user._id });
+	console.log(userSetting);
 	res.render("userSetting", {
 		isProfile: true,
 		user: { ...req.user, password: unhashing(req.user.password) },

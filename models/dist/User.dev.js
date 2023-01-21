@@ -26,15 +26,19 @@ var UserSchema = new _mongoose.Schema({
     type: String,
     required: true
   },
-  gameCount: {
-    type: String,
-    required: true
-  },
   role: {
     type: String,
     required: true
   },
   level: {
+    type: String,
+    required: true
+  },
+  gameCount: {
+    type: String,
+    required: true
+  },
+  winCount: {
     type: String,
     required: true
   }

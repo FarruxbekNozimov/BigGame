@@ -1,41 +1,5 @@
 "use strict";
 
-try {
-  var changeSetting = function changeSetting(x) {
-    var tabContents = document.getElementsByClassName("tabContents");
-
-    for (var j in tabContents) {
-      if (x.id != tabContents[j].id) {
-        tabContents[j].classList.add("d-none");
-        continue;
-      }
-
-      tabContents[j].classList.remove("d-none");
-    }
-  };
-
-  profilePassword.addEventListener("input", function () {
-    var profileSendBtns = document.getElementsByClassName("profileSendBtn");
-
-    if (profilePassword.value != profilePasswordCon.value) {
-      for (var i in profileSendBtns) {
-        profileSendBtns[i].disabled = true;
-      }
-    } else {
-      for (var _i in profileSendBtns) {
-        profileSendBtns[_i].disabled = false;
-      }
-    }
-  });
-  var tabs = document.getElementsByClassName("tabs");
-
-  for (var i in object) {
-    tabs[i].onclick = changeSetting(tabs[i]);
-  }
-} catch (error) {
-  console.log("error");
-}
-
 !function () {
   var e, t;
   -1 < navigator.platform.indexOf("Win") && (document.getElementsByClassName("main-content")[0] && (e = document.querySelector(".main-content"), new PerfectScrollbar(e)), document.getElementsByClassName("sidenav")[0] && (e = document.querySelector(".sidenav"), new PerfectScrollbar(e)), document.getElementsByClassName("navbar-collapse")[0] && (t = document.querySelector(".navbar-collapse"), new PerfectScrollbar(t)), document.getElementsByClassName("fixed-plugin")[0] && (t = document.querySelector(".fixed-plugin"), new PerfectScrollbar(t)));
@@ -478,4 +442,43 @@ function darkMode(e) {
   }
 }
 
-window.addEventListener("resize", navbarColorOnResize), window.addEventListener("resize", sidenavTypeOnResize), window.addEventListener("load", sidenavTypeOnResize);
+window.addEventListener("resize", navbarColorOnResize), window.addEventListener("resize", sidenavTypeOnResize), window.addEventListener("load", sidenavTypeOnResize); // try {
+
+profilePassword.addEventListener("input", function () {
+  var profileSendBtns = document.getElementsByClassName("profileSendBtn");
+
+  if (profilePassword.value != profilePasswordCon.value) {
+    for (var i in profileSendBtns) {
+      profileSendBtns[i].disabled = true;
+    }
+  } else {
+    for (var _i in profileSendBtns) {
+      profileSendBtns[_i].disabled = false;
+    }
+  }
+});
+
+function changeSetting(x) {
+  var tabContents = document.getElementsByClassName("tabContents");
+  console.log(tabContents);
+
+  for (var j in tabContents) {
+    console.log(j);
+
+    if (x.id != tabContents[j].id) {
+      console.log(tabContents[j]);
+      tabContents[j].classList.add("d-none");
+      continue;
+    }
+
+    tabContents[j].classList.remove("d-none");
+  }
+}
+
+var tabs = document.getElementsByClassName("tabs");
+
+for (var i in tabs) {
+  tabs[i].onclick = changeSetting(tabs[i]);
+} // } catch (error) {
+// 	console.log(error.name);
+// }

@@ -42,7 +42,6 @@ router.get("/pay", _auth["default"], function _callee(req, res) {
       switch (_context.prev = _context.next) {
         case 0:
           res.render("pay", {
-            isIndex: true,
             user: req.user
           });
 
@@ -71,6 +70,7 @@ router.get("/profile", _auth["default"], function _callee2(req, res) {
 
         case 5:
           userSetting = _context2.sent;
+          console.log(userSetting);
           res.render("userSetting", {
             isProfile: true,
             user: _objectSpread({}, req.user, {
@@ -80,7 +80,7 @@ router.get("/profile", _auth["default"], function _callee2(req, res) {
             settingError: req.flash("settingError")
           });
 
-        case 7:
+        case 8:
         case "end":
           return _context2.stop();
       }

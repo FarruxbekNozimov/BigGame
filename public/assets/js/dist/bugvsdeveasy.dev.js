@@ -1,26 +1,7 @@
 "use strict";
 
-window.addEventListener("DOMContentLoaded", function () {
-  var btns = document.getElementsByClassName("ticBtns");
-  var winBoard = document.getElementById("winBoard");
-  var winText = document.getElementById("winText");
-  var reset = document.getElementById("reset");
-  var grade = location.href.split("/").pop();
-  var firstBoard = {};
-
-  for (var i = 0; i < btns.length; i++) {
-    firstBoard[i] = "\u2060";
-  }
-
-  var localGame = JSON.parse(localStorage.getItem("localGame")) || firstBoard;
-  var ok = document.getElementById("ok");
-  playGame();
-  ok.addEventListener("click", function () {
-    resetGame();
-    winBoard.classList.add("d-none");
-  });
-
-  function playGame() {
+if (location.href.includes("games")) {
+  var playGame = function playGame() {
     reset.addEventListener("click", function () {
       resetGame();
     });
@@ -70,9 +51,9 @@ window.addEventListener("DOMContentLoaded", function () {
     for (var _i = 0; _i < btns.length; _i++) {
       _loop(_i);
     }
-  }
+  };
 
-  function setClassName() {
+  var setClassName = function setClassName() {
     for (var _i2 = 0; _i2 < btns.length; _i2++) {
       if (btns[_i2].innerHTML == "🧑‍💻") {
         btns[_i2].classList.remove("bot");
@@ -88,9 +69,9 @@ window.addEventListener("DOMContentLoaded", function () {
         btns[_i2].classList.remove("bot");
       }
     }
-  }
+  };
 
-  function checkWin() {
+  var checkWin = function checkWin() {
     if (btns[0].innerHTML == btns[1].innerHTML && btns[1].innerHTML == btns[2].innerHTML && btns[2].innerHTML != "\u2060") {
       return btns[2].innerHTML;
     } else if (btns[3].innerHTML == btns[4].innerHTML && btns[4].innerHTML == btns[5].innerHTML && btns[5].innerHTML != "\u2060") {
@@ -112,9 +93,9 @@ window.addEventListener("DOMContentLoaded", function () {
     } else {
       return -1;
     }
-  }
+  };
 
-  function winnerCheck(check) {
+  var winnerCheck = function winnerCheck(check) {
     if (check == "🧑‍💻") {
       winBoard.classList.remove("d-none");
       winBoard.classList.remove("errorWin");
@@ -138,26 +119,26 @@ window.addEventListener("DOMContentLoaded", function () {
       reset.disabled = true;
       return -1;
     }
-  }
+  };
 
-  function setLocalBtns() {
+  var setLocalBtns = function setLocalBtns() {
     for (var _i3 = 0; _i3 < btns.length; _i3++) {
       localGame[_i3] = btns[_i3].innerHTML;
     }
 
     localStorage.setItem("localGame", JSON.stringify(localGame));
-  }
+  };
 
-  function resetGame() {
+  var resetGame = function resetGame() {
     for (var _i4 = 0; _i4 < btns.length; _i4++) {
       btns[_i4].innerHTML = "\u2060";
       setClassName();
       localStorage.clear();
     }
-  } // GAME GRADE
+  }; // GAME GRADE
 
 
-  function easyGame() {
+  var easyGame = function easyGame() {
     for (var _i5 = 0; _i5 < btns.length; _i5++) {
       if (btns[_i5].innerHTML == "\u2060") {
         var randBtn = btns[Math.floor(Math.random() * btns.length)];
@@ -170,9 +151,9 @@ window.addEventListener("DOMContentLoaded", function () {
         return;
       }
     }
-  }
+  };
 
-  function middleGame() {
+  var middleGame = function middleGame() {
     if (btns[4].innerHTML == "\u2060") {
       btns[4].innerHTML = "🪲";
     } else if (btns[0].innerHTML == btns[1].innerHTML && btns[1].innerHTML != "\u2060" && btns[2].innerHTML == "\u2060") {
@@ -225,9 +206,9 @@ window.addEventListener("DOMContentLoaded", function () {
       console.log("salom");
       easyGame();
     }
-  }
+  };
 
-  function seniorGame() {
+  var seniorGame = function seniorGame() {
     if (btns[4].innerHTML == "\u2060" && (btns[0].innerHTML == btns[8].innerHTML && btns[0].innerHTML == "🪲" || btns[2].innerHTML == btns[6].innerHTML && btns[2].innerHTML == "🪲" || btns[5].innerHTML == btns[3].innerHTML && btns[5].innerHTML == "🪲" || btns[1].innerHTML == btns[7].innerHTML)) {
       btns[4].innerHTML = "🪲";
     } else if (btns[0].innerHTML == "\u2060" && (btns[1].innerHTML == btns[2].innerHTML && btns[1].innerHTML == "🪲" || btns[6].innerHTML == btns[3].innerHTML && btns[6].innerHTML == "🪲" || btns[8].innerHTML == btns[4].innerHTML && btns[8].innerHTML == "🪲")) {
@@ -325,5 +306,24 @@ window.addEventListener("DOMContentLoaded", function () {
         btns[8].innerHTML = "🪲";
       }
     }
+  };
+
+  var btns = document.getElementsByClassName("ticBtns");
+  var winBoard = document.getElementById("winBoard");
+  var winText = document.getElementById("winText");
+  var reset = document.getElementById("reset");
+  var grade = location.href.split("/").pop();
+  var firstBoard = {};
+
+  for (var i = 0; i < btns.length; i++) {
+    firstBoard[i] = "\u2060";
   }
-});
+
+  var localGame = JSON.parse(localStorage.getItem("localGame")) || firstBoard;
+  var ok = document.getElementById("ok");
+  playGame();
+  ok.addEventListener("click", function () {
+    resetGame();
+    winBoard.classList.add("d-none");
+  });
+}

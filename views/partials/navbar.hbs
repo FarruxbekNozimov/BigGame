@@ -5,65 +5,34 @@
 	navbar-scroll="true"
 >
 	<div class="container-fluid py-1 px-3">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-				<li class="breadcrumb-item text-sm"><a
-						class="opacity-5 text-dark"
-						href="javascript:;"
-					>Pages</a></li>
-				<li
-					class="breadcrumb-item text-sm text-dark active"
-					aria-current="page"
-				>
-					{{#if isIndex}}
-						Home Page
-					{{else if isProfile}}
-						Profile
-					{{else if isGames}}
-						Games
-					{{/if}}
-				</li>
-			</ol>
-			<h6 class="font-weight-bolder mb-0">
-				{{#if isIndex}}
-					Home Page
-				{{else if isProfile}}
-					Profile
-				{{else if isGames}}
-					Games
-				{{/if}}
-			</h6>
-		</nav>
+
 		<div
 			class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
 			id="navbar"
 		>
+			<div class="d-flex lvStyle">
+				<img src="/img/lv/lv.png" alt="Image" height="45px" width="45px" />
+				<span class="moneySpan">{{user.level}}</span>
+				<button class="navUser">
+					<i class="fa fa-user" aria-hidden="true"></i>
+				</button>
+			</div>
+			<div class="d-flex moneyStyle">
+				<img src="/img/money.png" alt="Image" height="80px" />
+				<span class="moneySpan">{{user.money}}</span>
+			</div>
 			<div class="ms-md-auto pe-md-3 d-flex align-items-center">
-				<div class="d-flex moneyStyle">
-					<img src="/img/money.png" alt="Image" height="80px" />
-					<span class="moneySpan">{{user.money}}</span>
-				</div>
 			</div>
 			<ul class="navbar-nav justify-content-end">
 				<li class="nav-item d-flex align-items-center">
-					<div class="ms-md-auto pe-md-3 d-flex align-items-center">
-						<div class="d-flex lvStyle">
-							<img
-								src="/img/lv/lv.png"
-								alt="Image"
-								height="45px"
-								width="45px"
-							/>
-							<span class="moneySpan">{{user.level}}</span>
-						</div>
-					</div>
+
 				</li>
 				<li class="nav-item d-flex align-items-center">
 					<a href="/logout" class="nav-link text-body font-weight-bold px-0">
 						<img
 							src="/img/logout.png"
 							alt=""
-							height="70px"
+							height="50px"
 							class="p-0 user-select-none"
 						/>
 					</a>

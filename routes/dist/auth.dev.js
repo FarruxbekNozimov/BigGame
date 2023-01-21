@@ -143,7 +143,10 @@ router.post("/register", function _callee(req, res) {
           return regeneratorRuntime.awrap(_User["default"].create(_objectSpread({
             stars: 0,
             money: 0
-          }, userData)));
+          }, userData, {
+            gameCount: 0,
+            winCount: 0
+          })));
 
         case 29:
           user = _context.sent;
@@ -153,7 +156,7 @@ router.post("/register", function _callee(req, res) {
             fullName: "",
             gender: "",
             description: "",
-            image: "/img/user/default-user.png",
+            image: "default-user.png",
             mobilePhone: "",
             location: "Uzbekistan",
             telegramLink: "",

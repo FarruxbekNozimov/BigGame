@@ -26868,8 +26868,9 @@ input::-webkit-inner-spin-button {
   color: #000;
 }
 
-.moneyStyle {
-  margin-right: 30px;
+.lvStyle {
+  border-radius: 15px 0 0 15px !important;
+  margin-right: 100px;
 }
 
 .moneyStyle img {
@@ -26889,9 +26890,26 @@ input::-webkit-inner-spin-button {
   border: 3px solid #005eff;
 }
 
-
 .moneySpan {
   font-weight: bold;
   font-size: 20px;
-  padding: 0 40px;
+  width: 150px;
+}
+
+.lvStyle .moneySpan {
+  width: 100px;
+}
+
+.navUser {
+  position: absolute;
+  right: -50px;
+  top: -3px;
+  height: 38px;
+  background: #005eff;
+  width: 50px;
+  border-radius: 0 15px 15px 0;
+  font-size: 20px;
+  padding: 3px 10px;
+  color: #fff;
+  border: none;
 }

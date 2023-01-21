@@ -6,9 +6,10 @@ const UserSchema = new Schema(
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
 		money: { type: String, required: true },
-		gameCount: { type: String, required: true },
 		role: { type: String, required: true },
 		level: { type: String, required: true },
+		gameCount: { type: String, required: true },
+		winCount: { type: String, required: true },
 	},
 	{ timestamps: true }
 );

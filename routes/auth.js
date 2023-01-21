@@ -76,13 +76,19 @@ router.post("/register", async (req, res) => {
 	}
 	if (userCode && getCode == userCode) {
 		userData.password = hashing(userData.password);
-		const user = await User.create({ stars: 0, money: 0, ...userData });
+		const user = await User.create({
+			stars: 0,
+			money: 0,
+			...userData,
+			gameCount: 0,
+			winCount: 0,
+		});
 		const setting = await Setting.create({
 			userId: user.id,
 			fullName: "",
 			gender: "",
 			description: "",
-			image: "/img/user/default-user.png",
+			image: "default-user.png",
 			mobilePhone: "",
 			location: "Uzbekistan",
 			telegramLink: "",
