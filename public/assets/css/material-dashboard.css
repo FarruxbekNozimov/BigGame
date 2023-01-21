@@ -26855,3 +26855,43 @@ input::-webkit-inner-spin-button {
 .sideIcon {
   height: 25px !important;
 }
+
+.moneyStyle, .lvStyle {
+  position: relative;
+  text-align: center;
+  align-items: center;
+  background: #00ffd9 !important;
+  margin-right: 0;
+  border-radius: 15px !important;
+  border: 3px solid #005eff;
+  user-select: none;
+  color: #000;
+}
+
+.moneyStyle {
+  margin-right: 30px;
+}
+
+.moneyStyle img {
+  position: absolute;
+  left: -45px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.lvStyle img {
+  position: absolute;
+  left: -27px;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 50px;
+  background: yellow;
+  border: 3px solid #005eff;
+}
+
+
+.moneySpan {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0 40px;
+}

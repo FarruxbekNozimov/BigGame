@@ -52,7 +52,7 @@ window.addEventListener("DOMContentLoaded", function () {
             return;
           }
 
-          if (grade == "junior") easyGame();else if (grade == "middle") middleGame();else if (grade == "senior") easyGame();
+          if (grade == "junior") easyGame();else if (grade == "middle") middleGame();else if (grade == "senior") seniorGame();
           setLocalBtns();
           setClassName();
 
@@ -154,7 +154,8 @@ window.addEventListener("DOMContentLoaded", function () {
       setClassName();
       localStorage.clear();
     }
-  }
+  } // GAME GRADE
+
 
   function easyGame() {
     for (var _i5 = 0; _i5 < btns.length; _i5++) {
@@ -223,6 +224,106 @@ window.addEventListener("DOMContentLoaded", function () {
     } else {
       console.log("salom");
       easyGame();
+    }
+  }
+
+  function seniorGame() {
+    if (btns[4].innerHTML == "\u2060" && (btns[0].innerHTML == btns[8].innerHTML && btns[0].innerHTML == "🪲" || btns[2].innerHTML == btns[6].innerHTML && btns[2].innerHTML == "🪲" || btns[5].innerHTML == btns[3].innerHTML && btns[5].innerHTML == "🪲" || btns[1].innerHTML == btns[7].innerHTML)) {
+      btns[4].innerHTML = "🪲";
+    } else if (btns[0].innerHTML == "\u2060" && (btns[1].innerHTML == btns[2].innerHTML && btns[1].innerHTML == "🪲" || btns[6].innerHTML == btns[3].innerHTML && btns[6].innerHTML == "🪲" || btns[8].innerHTML == btns[4].innerHTML && btns[8].innerHTML == "🪲")) {
+      btns[0].innerHTML = "🪲";
+    } else if (btns[1].innerHTML == "\u2060" && (btns[0].innerHTML == btns[2].innerHTML && btns[0].innerHTML == "🪲" || btns[7].innerHTML == btns[4].innerHTML && btns[7].innerHTML == "🪲")) {
+      btns[1].innerHTML = "🪲";
+    } else if (btns[2].innerHTML == "\u2060" && (btns[0].innerHTML == btns[1].innerHTML && btns[0].innerHTML == "🪲" || btns[8].innerHTML == btns[5].innerHTML && btns[8].innerHTML == "🪲" || btns[6].innerHTML == btns[4].innerHTML && btns[6].innerHTML == "🪲")) {
+      btns[2].innerHTML = "🪲";
+    } else if (btns[3].innerHTML == "\u2060" && (btns[0].innerHTML == btns[6].innerHTML && btns[0].innerHTML == "🪲" || btns[4].innerHTML == btns[5].innerHTML && btns[4].innerHTML == "🪲")) {
+      btns[3].innerHTML = "🪲";
+    } else if (btns[5].innerHTML == "\u2060" && (btns[2].innerHTML == btns[8].innerHTML && btns[2].innerHTML == "🪲" || btns[4].innerHTML == btns[3].innerHTML && btns[4].innerHTML == "🪲")) {
+      btns[5].innerHTML = "🪲";
+    } else if (btns[6].innerHTML == "\u2060" && (btns[0].innerHTML == btns[3].innerHTML && btns[0].innerHTML == "🪲" || btns[2].innerHTML == btns[4].innerHTML && btns[2].innerHTML == "🪲" || btns[7].innerHTML == btns[8].innerHTML && btns[7].innerHTML == "🪲")) {
+      btns[6].innerHTML = "🪲";
+    } else if (btns[7].innerHTML == "\u2060" && (btns[1].innerHTML == btns[4].innerHTML && btns[1].innerHTML == "🪲" || btns[6].innerHTML == btns[8].innerHTML && btns[6].innerHTML == "🪲")) {
+      btns[7].innerHTML = "🪲";
+    } else if (btns[8].innerHTML == "\u2060" && (btns[2].innerHTML == btns[5].innerHTML && btns[2].innerHTML == "🪲" || btns[0].innerHTML == btns[4].innerHTML && btns[0].innerHTML == "🪲" || btns[6].innerHTML == btns[7].innerHTML && btns[6].innerHTML == "🪲")) {
+      btns[8].innerHTML = "🪲";
+    } else if (btns[4].innerHTML == "\u2060" && (btns[0].innerHTML == btns[8].innerHTML && btns[0].innerHTML == "🧑‍💻" || btns[2].innerHTML == btns[6].innerHTML && btns[2].innerHTML == "🧑‍💻" || btns[5].innerHTML == btns[3].innerHTML && btns[5].innerHTML == "🧑‍💻" || btns[1].innerHTML == btns[7].innerHTML)) {
+      btns[4].innerHTML = "🪲";
+    } else if (btns[0].innerHTML == "\u2060" && (btns[1].innerHTML == btns[2].innerHTML && btns[1].innerHTML == "🧑‍💻" || btns[6].innerHTML == btns[3].innerHTML && btns[6].innerHTML == "🧑‍💻" || btns[8].innerHTML == btns[4].innerHTML && btns[8].innerHTML == "🧑‍💻")) {
+      btns[0].innerHTML = "🪲";
+    } else if (btns[1].innerHTML == "\u2060" && (btns[0].innerHTML == btns[2].innerHTML && btns[0].innerHTML == "🧑‍💻" || btns[7].innerHTML == btns[4].innerHTML && btns[7].innerHTML == "🧑‍💻")) {
+      btns[1].innerHTML = "🪲";
+    } else if (btns[2].innerHTML == "\u2060" && (btns[0].innerHTML == btns[1].innerHTML && btns[0].innerHTML == "🧑‍💻" || btns[8].innerHTML == btns[5].innerHTML && btns[8].innerHTML == "🧑‍💻" || btns[6].innerHTML == btns[4].innerHTML && btns[6].innerHTML == "🧑‍💻")) {
+      btns[2].innerHTML = "🪲";
+    } else if (btns[3].innerHTML == "\u2060" && (btns[0].innerHTML == btns[6].innerHTML && btns[0].innerHTML == "🧑‍💻" || btns[4].innerHTML == btns[5].innerHTML && btns[4].innerHTML == "🧑‍💻")) {
+      btns[3].innerHTML = "🪲";
+    } else if (btns[5].innerHTML == "\u2060" && (btns[2].innerHTML == btns[8].innerHTML && btns[2].innerHTML == "🧑‍💻" || btns[4].innerHTML == btns[3].innerHTML && btns[4].innerHTML == "🧑‍💻")) {
+      btns[5].innerHTML = "🪲";
+    } else if (btns[6].innerHTML == "\u2060" && (btns[0].innerHTML == btns[3].innerHTML && btns[0].innerHTML == "🧑‍💻" || btns[2].innerHTML == btns[4].innerHTML && btns[2].innerHTML == "🧑‍💻" || btns[7].innerHTML == btns[8].innerHTML && btns[7].innerHTML == "🧑‍💻")) {
+      btns[6].innerHTML = "🪲";
+    } else if (btns[7].innerHTML == "\u2060" && (btns[1].innerHTML == btns[4].innerHTML && btns[1].innerHTML == "🧑‍💻" || btns[6].innerHTML == btns[8].innerHTML && btns[6].innerHTML == "🧑‍💻")) {
+      btns[7].innerHTML = "🪲";
+    } else if (btns[8].innerHTML == "\u2060" && (btns[2].innerHTML == btns[5].innerHTML && btns[2].innerHTML == "🧑‍💻" || btns[0].innerHTML == btns[4].innerHTML && btns[0].innerHTML == "🧑‍💻" || btns[6].innerHTML == btns[7].innerHTML && btns[6].innerHTML == "🧑‍💻")) {
+      btns[8].innerHTML = "🪲";
+    } else if (btns[0].innerHTML == "\u2060" && btns[1].innerHTML == "🧑‍💻" && btns[6].innerHTML == "🧑‍💻" && btns[7].innerHTML == "🪲") {
+      btns[0].innerHTML = "🪲";
+    } else if (btns[0].innerHTML == "\u2060" && btns[1].innerHTML == "🧑‍💻" && btns[8].innerHTML == "🧑‍💻" && btns[7].innerHTML == "🪲") {
+      btns[0].innerHTML = "🪲";
+    } else if (btns[3].innerHTML == "\u2060" && btns[6].innerHTML == "🧑‍💻" && btns[1].innerHTML == "🧑‍💻" && btns[4].innerHTML == "🪲") {
+      btns[3].innerHTML = "🪲";
+    } else if (btns[3].innerHTML == "\u2060" && btns[8].innerHTML == "🧑‍💻" && btns[1].innerHTML == "🧑‍💻" && btns[4].innerHTML == "🪲") {
+      btns[3].innerHTML = "🪲";
+    } else if (btns[3].innerHTML == "\u2060" && btns[5].innerHTML == "🧑‍💻" && btns[7].innerHTML == "🧑‍💻" && btns[8].innerHTML == "🪲") {
+      btns[3].innerHTML = "🪲";
+    } else if (btns[0].innerHTML == "\u2060" && btns[7].innerHTML == "🧑‍💻" && btns[5].innerHTML == "🧑‍💻" && btns[6].innerHTML == "🪲") {
+      btns[0].innerHTML = "🪲";
+    } else if (btns[3].innerHTML == "\u2060" && btns[8].innerHTML == "🧑‍💻" && btns[6].innerHTML == "🧑‍💻" && btns[7].innerHTML == "🪲" && btns[4].innerHTML == "🪲") {
+      btns[3].innerHTML = "🪲";
+    } else if (btns[0].innerHTML == "\u2060" && btns[1].innerHTML == "🧑‍💻" && btns[3].innerHTML == "🧑‍💻" && btns[7].innerHTML == "🪲") {
+      btns[0].innerHTML = "🪲";
+    } else if (btns[0].innerHTML == "\u2060" && btns[1].innerHTML == "🧑‍💻" && btns[5].innerHTML == "🧑‍💻" && btns[7].innerHTML == "🪲") {
+      btns[0].innerHTML = "🪲";
+    } else if (btns[8].innerHTML == "\u2060" && btns[3].innerHTML == "🧑‍💻" && btns[1].innerHTML == "🧑‍💻" && btns[6].innerHTML == "🪲") {
+      btns[8].innerHTML = "🪲";
+    } else if (btns[6].innerHTML == "\u2060" && btns[5].innerHTML == "🧑‍💻" && btns[1].innerHTML == "🧑‍💻" && btns[8].innerHTML == "🪲") {
+      btns[6].innerHTML = "🪲";
+    } else if (btns[4].innerHTML == "\u2060" && (btns[0].innerHTML == "🧑‍💻" || btns[2].innerHTML == "🧑‍💻" || btns[8].innerHTML == "🧑‍💻" || btns[6].innerHTML == "🧑‍💻")) {
+      btns[4].innerHTML = "🪲";
+    } else if (btns[6].innerHTML == "\u2060" && (btns[4].innerHTML == "🧑‍💻" || btns[3].innerHTML == "🧑‍💻" || btns[7].innerHTML == "🧑‍💻")) {
+      btns[6].innerHTML = "🪲";
+    } else if (btns[8].innerHTML == "\u2060" && btns[5].innerHTML == "🧑‍💻") {
+      btns[8].innerHTML = "🪲";
+    } else if (btns[7].innerHTML == "\u2060" && btns[1].innerHTML == "🧑‍💻") {
+      btns[7].innerHTML = "🪲";
+    } else if (btns[7].innerHTML == "\u2060" && btns[6].innerHTML == "🧑‍💻" && btns[2].innerHTML == "🧑‍💻" && btns[4].innerHTML == "🪲") {
+      btns[7].innerHTML = "🪲";
+    } else if (btns[7].innerHTML == "\u2060" && btns[0].innerHTML == "🧑‍💻" && btns[8].innerHTML == "🧑‍💻" && btns[4].innerHTML == "🪲") {
+      btns[7].innerHTML = "🪲";
+    } else if (btns[4].innerHTML == "\u2060" && btns[3].innerHTML == "🧑‍💻" && btns[7].innerHTML == "🧑‍💻" && btns[6].innerHTML == "🪲") {
+      btns[4].innerHTML = "🪲";
+    } else if (btns[8].innerHTML == "\u2060" && btns[3].innerHTML == "🧑‍💻" && btns[7].innerHTML == "🧑‍💻" && btns[6].innerHTML == "🪲" && btns[2].innerHTML == "🧑‍💻" && btns[4].innerHTML == "🪲") {
+      btns[8].innerHTML = "🪲";
+    } else if (btns[8].innerHTML == "\u2060" && btns[4].innerHTML == "🧑‍💻" && btns[2].innerHTML == "🧑‍💻" && btns[6].innerHTML == "🪲") {
+      btns[8].innerHTML = "🪲";
+    } else {
+      if (btns[0].innerHTML == "\u2060") {
+        btns[0].innerHTML = "🪲";
+      } else if (btns[1].innerHTML == "\u2060") {
+        btns[1].innerHTML = "🪲";
+      } else if (btns[2].innerHTML == "\u2060") {
+        btns[2].innerHTML = "🪲";
+      } else if (btns[3].innerHTML == "\u2060") {
+        btns[3].innerHTML = "🪲";
+      } else if (btns[4].innerHTML == "\u2060") {
+        btns[4].innerHTML = "🪲";
+      } else if (btns[5].innerHTML == "\u2060") {
+        btns[5].innerHTML = "🪲";
+      } else if (btns[6].innerHTML == "\u2060") {
+        btns[6].innerHTML = "🪲";
+      } else if (btns[7].innerHTML == "\u2060") {
+        btns[7].innerHTML = "🪲";
+      } else if (btns[8].innerHTML == "\u2060") {
+        btns[8].innerHTML = "🪲";
+      }
     }
   }
 });

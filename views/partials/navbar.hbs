@@ -39,34 +39,31 @@
 			id="navbar"
 		>
 			<div class="ms-md-auto pe-md-3 d-flex align-items-center">
-				<div class="input-group input-group-outline">
-					<label class="form-label">Type here...</label>
-					<input type="text" class="form-control" />
+				<div class="d-flex moneyStyle">
+					<img src="/img/money.png" alt="Image" height="80px" />
+					<span class="moneySpan">{{user.money}}</span>
 				</div>
 			</div>
 			<ul class="navbar-nav justify-content-end">
 				<li class="nav-item d-flex align-items-center">
-					<span
-						class="nav-link text-body rounded p-0 ps-2 pe-2 position-relative"
-					>
-						<img
-							src="/img/lv/lev.png"
-							alt=""
-							height="60px"
-							class="p-0 user-select-none"
-						/>
-						<span
-							class="position-absolute start-50 translate-middle font-monospace fw-bold"
-							style="font-size:20px;top:40%;color:blue;"
-						>{{user.level}}</span>
-					</span>
+					<div class="ms-md-auto pe-md-3 d-flex align-items-center">
+						<div class="d-flex lvStyle">
+							<img
+								src="/img/lv/lv.png"
+								alt="Image"
+								height="45px"
+								width="45px"
+							/>
+							<span class="moneySpan">{{user.level}}</span>
+						</div>
+					</div>
 				</li>
 				<li class="nav-item d-flex align-items-center">
 					<a href="/logout" class="nav-link text-body font-weight-bold px-0">
 						<img
 							src="/img/logout.png"
 							alt=""
-							height="40px"
+							height="70px"
 							class="p-0 user-select-none"
 						/>
 					</a>

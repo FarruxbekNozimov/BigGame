@@ -26,7 +26,7 @@ var UserSchema = new _mongoose.Schema({
     type: String,
     required: true
   },
-  stars: {
+  gameCount: {
     type: String,
     required: true
   },

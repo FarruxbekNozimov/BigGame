@@ -4,28 +4,30 @@
 	<!-- End Navbar -->
 	<div class="container-fluid py-4">
 		<div class="row">
-			<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-				<div class="card">
-					<div class="card-header p-3 pt-2">
-						<div
-							class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute"
-						>
-							<img src="/img/gamesIcon/bugvsdev.png" alt="" width="90%" class="text-center m-1">
+			{{#each games}}
+				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+					<div class="card">
+						<div class="card-header p-3 pt-2">
+							<div
+								class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute d-flex  align-items-center"
+							>
+								<img src="/img/gamesIcon/{{image}}.png" alt="" width="90%" class="text-center m-1">
+							</div>
+							<div class="text-end pt-1">
+								<h4 class="mb-0">{{name}}</h4>
+								<p class="text-sm mb-0 text-capitalize">{{description}}</p>
+							</div>
 						</div>
-						<div class="text-end pt-1">
-							<h4 class="mb-0">Bug vs Dev</h4>
-							<p class="text-sm mb-0 text-capitalize">You play game vs bug</p>
-						</div>
+						<hr class="dark horizontal my-0" />
+						<div class="card-footer p-2 ps-3 d-flex justify-content-between">
+							<p class="mb-0 p-0">
+							<a href="{{action}}" class="btn bg-gradient-warning rounded-pill m-0 pe-4 ps-4 pt-1 pb-1" >play 🎮 </a>
+							</p>
+							<small class="text-muted pe-2 ps-4 pt-1 pb-1">{{date}}</small>
 					</div>
-					<hr class="dark horizontal my-0" />
-					<div class="card-footer p-2 ps-3 d-flex justify-content-between">
-						<p class="mb-0 p-0">
-						<a href="/games/bugvsdev" class="btn bg-gradient-warning rounded-pill m-0 pe-4 ps-4 pt-1 pb-1" >play 🎮 </a>
-						</p>
-						<small class="text-muted pe-2 ps-4 pt-1 pb-1">17/01</small>
+					</div>
 				</div>
-				</div>
-			</div>
+			{{/each}}
 		</div>
 	</div>
 </main>

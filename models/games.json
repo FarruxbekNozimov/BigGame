@@ -1,0 +1,18 @@
+[
+	{
+		"id": 1,
+		"name": "BvsD",
+		"description": "Bug Vs Dev",
+		"image": "bugvsdev",
+		"action": "/games/bugvsdev",
+		"date": "18.01"
+	},
+	{
+		"id": 1,
+		"name": "RPS",
+		"description": "Rock paper scissors",
+		"image": "rps",
+		"action": "/games/rps",
+		"date": "21.01"
+	}
+]
