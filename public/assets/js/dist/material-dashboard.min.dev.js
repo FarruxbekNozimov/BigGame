@@ -442,43 +442,34 @@ function darkMode(e) {
   }
 }
 
-window.addEventListener("resize", navbarColorOnResize), window.addEventListener("resize", sidenavTypeOnResize), window.addEventListener("load", sidenavTypeOnResize); // try {
-
-profilePassword.addEventListener("input", function () {
-  var profileSendBtns = document.getElementsByClassName("profileSendBtn");
-
-  if (profilePassword.value != profilePasswordCon.value) {
-    for (var i in profileSendBtns) {
-      profileSendBtns[i].disabled = true;
-    }
-  } else {
-    for (var _i in profileSendBtns) {
-      profileSendBtns[_i].disabled = false;
-    }
-  }
-});
-
-function changeSetting(x) {
-  var tabContents = document.getElementsByClassName("tabContents");
-  console.log(tabContents);
-
-  for (var j in tabContents) {
-    console.log(j);
-
-    if (x.id != tabContents[j].id) {
-      console.log(tabContents[j]);
-      tabContents[j].classList.add("d-none");
-      continue;
-    }
-
-    tabContents[j].classList.remove("d-none");
-  }
-}
-
-var tabs = document.getElementsByClassName("tabs");
-
-for (var i in tabs) {
-  tabs[i].onclick = changeSetting(tabs[i]);
-} // } catch (error) {
-// 	console.log(error.name);
+window.addEventListener("resize", navbarColorOnResize), window.addEventListener("resize", sidenavTypeOnResize), window.addEventListener("load", sidenavTypeOnResize); // if (location.href.includes("profile")) {
+// 	// try {
+// 	profilePassword.addEventListener("input", () => {
+// 		let profileSendBtns = document.getElementsByClassName("profileSendBtn");
+// 		if (profilePassword.value != profilePasswordCon.value) {
+// 			for (let i in profileSendBtns) profileSendBtns[i].disabled = true;
+// 		} else {
+// 			for (let i in profileSendBtns) profileSendBtns[i].disabled = false;
+// 		}
+// 	});
+// 	function changeSetting(x) {
+// 		let tabContents = document.getElementsByClassName("tabContents");
+// 		console.log(tabContents);
+// 		for (let j in tabContents) {
+// 			console.log(j);
+// 			if (x.id != tabContents[j].id) {
+// 				console.log(tabContents[j]);
+// 				tabContents[j].classList.add("d-none");
+// 				continue;
+// 			}
+// 			tabContents[j].classList.remove("d-none");
+// 		}
+// 	}
+// 	let tabs = document.getElementsByClassName("tabs");
+// 	for (let i in tabs) {
+// 		tabs[i].onclick = changeSetting(tabs[i]);
+// 	}
+// 	// } catch (error) {
+// 	// 	console.log(error.name);
+// 	// }
 // }

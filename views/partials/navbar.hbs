@@ -1,9 +1,25 @@
 <!-- Navbar -->
-<div class="aboutUser">
+<div class="aboutUser d-none" id="aboutUser">
 	<div class="d-flex text-center gap-3 h-100 w-100">
 		<div class="w-100 p-3">
-			<h3>{{user.username}}</h3>
-			<span class="navbarInfoSpan"></span>
+			<h2 class="text-light fw-bold">{{user.username}}</h2>
+			<br />
+			<span class="navbarInfoSpan">
+				<span>Region</span>
+				<span>{{userSetting.location}}</span>
+			</span>
+			<span class="navbarInfoSpan">
+				<span>Money</span>
+				<span>{{user.money}}</span>
+			</span>
+			<span class="navbarInfoSpan">
+				<span>Games</span>
+				<span>{{user.gameCount}}</span>
+			</span>
+			<span class="navbarInfoSpan">
+				<span>Wins</span>
+				<span>{{user.winCount}}</span>
+			</span>
 		</div>
 		<div class="d-flex align-item-center text-center w-100">
 			<div class="slider">
@@ -16,7 +32,7 @@
 			</div>
 		</div>
 	</div>
-	<button class="aboutCloseBtn">X</button>
+	<button class="aboutCloseBtn" id="navbarUsrInfoClose">X</button>
 </div>
 <nav
 	class="navbar navbar-main navbar-expand-lg px-0 mb-0 pb-0 mx-4 shadow-none border-radius-xl"
