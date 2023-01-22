@@ -1,16 +1,11 @@
 <!-- Navbar -->
 <div class="aboutUser">
-	<div class="d-flex">
-		<div class="left">
-			<div class="d-flex lvStyle">
-				<img src="/img/lv/lv.png" alt="Image" height="45px" width="45px" />
-				<span class="moneySpan">{{user.level}}</span>
-				<button class="navUser" id="navUser">
-					<i class="fa fa-user" aria-hidden="true"></i>
-				</button>
-			</div>
+	<div class="d-flex text-center gap-3 h-100 w-100">
+		<div class="w-100 p-3">
+			<h3>{{user.username}}</h3>
+			<span class="navbarInfoSpan"></span>
 		</div>
-		<div class="right">
+		<div class="d-flex align-item-center text-center w-100">
 			<div class="slider">
 				<img src="/img/user/{{userSetting.image}}" alt="Alt 1" />
 				<img src="/img/user/{{userSetting.image}}" alt="Alt 1" />

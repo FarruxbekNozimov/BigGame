@@ -26917,7 +26917,7 @@ input::-webkit-inner-spin-button {
 .aboutUser {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 55%;
   transform: translate(-50%, -50%);
   height: 75%;
   width: 75%;
@@ -26959,9 +26959,9 @@ input::-webkit-inner-spin-button {
 
 .slider {
   --s: 250px;
-  /* cube size */
   display: grid;
-  width: var(--s);
+  width: 50%;
+  margin: auto;
   aspect-ratio: 1;
   transform-style: preserve-3d;
   --_p: perspective(calc(2.5*var(--s)));
