@@ -10,23 +10,30 @@ import Setting from "../models/Setting.js";
 import downloadImg from "../utils/download.js";
 import { hashing, unhashing } from "../utils/hashing.js";
 
-router.get("/", authMiddleware, (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
+	let user = await User.findById(req.user._id);
+	let userSetting = await Setting.findOne({ userId: user._id });
 	res.render("index", {
 		isIndex: true,
 		user: req.user,
+		user: { ...req.user, password: unhashing(req.user.password) },
+		userSetting: userSetting,
 	});
 });
 
 router.get("/pay", authMiddleware, async (req, res) => {
+	let user = await User.findById(req.user._id);
+	let userSetting = await Setting.findOne({ userId: user._id });
 	res.render("pay", {
 		user: req.user,
+		user: { ...req.user, password: unhashing(req.user.password) },
+		userSetting: userSetting,
 	});
 });
 
 router.get("/profile", authMiddleware, async (req, res) => {
 	let user = await User.findById(req.user._id);
 	let userSetting = await Setting.findOne({ userId: user._id });
-	console.log(userSetting);
 	res.render("userSetting", {
 		isProfile: true,
 		user: { ...req.user, password: unhashing(req.user.password) },

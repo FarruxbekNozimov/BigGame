@@ -30,29 +30,43 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var router = (0, _express.Router)();
-router.get("/", _auth["default"], function (req, res) {
-  res.render("index", {
-    isIndex: true,
-    user: req.user
-  });
-});
-router.get("/pay", _auth["default"], function _callee(req, res) {
+router.get("/", _auth["default"], function _callee(req, res) {
+  var _res$render;
+
+  var user, userSetting;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          res.render("pay", {
-            user: req.user
-          });
+          _context.next = 2;
+          return regeneratorRuntime.awrap(_User["default"].findById(req.user._id));
 
-        case 1:
+        case 2:
+          user = _context.sent;
+          _context.next = 5;
+          return regeneratorRuntime.awrap(_Setting["default"].findOne({
+            userId: user._id
+          }));
+
+        case 5:
+          userSetting = _context.sent;
+          res.render("index", (_res$render = {
+            isIndex: true,
+            user: req.user
+          }, _defineProperty(_res$render, "user", _objectSpread({}, req.user, {
+            password: (0, _hashing.unhashing)(req.user.password)
+          })), _defineProperty(_res$render, "userSetting", userSetting), _res$render));
+
+        case 7:
         case "end":
           return _context.stop();
       }
     }
   });
 });
-router.get("/profile", _auth["default"], function _callee2(req, res) {
+router.get("/pay", _auth["default"], function _callee2(req, res) {
+  var _res$render2;
+
   var user, userSetting;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
@@ -70,7 +84,37 @@ router.get("/profile", _auth["default"], function _callee2(req, res) {
 
         case 5:
           userSetting = _context2.sent;
-          console.log(userSetting);
+          res.render("pay", (_res$render2 = {
+            user: req.user
+          }, _defineProperty(_res$render2, "user", _objectSpread({}, req.user, {
+            password: (0, _hashing.unhashing)(req.user.password)
+          })), _defineProperty(_res$render2, "userSetting", userSetting), _res$render2));
+
+        case 7:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  });
+});
+router.get("/profile", _auth["default"], function _callee3(req, res) {
+  var user, userSetting;
+  return regeneratorRuntime.async(function _callee3$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.next = 2;
+          return regeneratorRuntime.awrap(_User["default"].findById(req.user._id));
+
+        case 2:
+          user = _context3.sent;
+          _context3.next = 5;
+          return regeneratorRuntime.awrap(_Setting["default"].findOne({
+            userId: user._id
+          }));
+
+        case 5:
+          userSetting = _context3.sent;
           res.render("userSetting", {
             isProfile: true,
             user: _objectSpread({}, req.user, {
@@ -80,30 +124,30 @@ router.get("/profile", _auth["default"], function _callee2(req, res) {
             settingError: req.flash("settingError")
           });
 
-        case 8:
+        case 7:
         case "end":
-          return _context2.stop();
+          return _context3.stop();
       }
     }
   });
 });
-router.post("/profile", function _callee3(req, res) {
+router.post("/profile", function _callee4(req, res) {
   var _req$body, userImageURL, fullName, gender, mobilePhone, location, description, username, email, password, passwordCon, telegramLink, instagramLink, facebookLink, websiteLink, userImage, updateUser, updateSetting;
 
-  return regeneratorRuntime.async(function _callee3$(_context3) {
+  return regeneratorRuntime.async(function _callee4$(_context4) {
     while (1) {
-      switch (_context3.prev = _context3.next) {
+      switch (_context4.prev = _context4.next) {
         case 0:
           console.log(req.body);
           _req$body = req.body, userImageURL = _req$body.userImageURL, fullName = _req$body.fullName, gender = _req$body.gender, mobilePhone = _req$body.mobilePhone, location = _req$body.location, description = _req$body.description, username = _req$body.username, email = _req$body.email, password = _req$body.password, passwordCon = _req$body.passwordCon, telegramLink = _req$body.telegramLink, instagramLink = _req$body.instagramLink, facebookLink = _req$body.facebookLink, websiteLink = _req$body.websiteLink;
 
           if (!(password != passwordCon)) {
-            _context3.next = 5;
+            _context4.next = 5;
             break;
           }
 
           req.flash("settingError", "Passwords do not match");
-          return _context3.abrupt("return", res.redirect("/profile"));
+          return _context4.abrupt("return", res.redirect("/profile"));
 
         case 5:
           // IMAGE DOWNLOADER
@@ -125,7 +169,7 @@ router.post("/profile", function _callee3(req, res) {
 
 
           password = (0, _hashing.hashing)(password);
-          _context3.next = 10;
+          _context4.next = 10;
           return regeneratorRuntime.awrap(_User["default"].findOneAndUpdate(req.user._id, {
             username: username,
             email: email,
@@ -135,8 +179,8 @@ router.post("/profile", function _callee3(req, res) {
           }));
 
         case 10:
-          updateUser = _context3.sent;
-          _context3.next = 13;
+          updateUser = _context4.sent;
+          _context4.next = 13;
           return regeneratorRuntime.awrap(_Setting["default"].findOneAndUpdate({
             userId: req.user._id
           }, {
@@ -155,29 +199,29 @@ router.post("/profile", function _callee3(req, res) {
           }));
 
         case 13:
-          updateSetting = _context3.sent;
+          updateSetting = _context4.sent;
           res.redirect("/profile");
 
         case 15:
         case "end":
-          return _context3.stop();
+          return _context4.stop();
       }
     }
   });
 });
-router.get("/:username", _auth["default"], function _callee4(req, res) {
+router.get("/:username", _auth["default"], function _callee5(req, res) {
   var user;
-  return regeneratorRuntime.async(function _callee4$(_context4) {
+  return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
-      switch (_context4.prev = _context4.next) {
+      switch (_context5.prev = _context5.next) {
         case 0:
-          _context4.next = 2;
+          _context5.next = 2;
           return regeneratorRuntime.awrap(_User["default"].findOne({
             username: req.params.username
           }));
 
         case 2:
-          user = _context4.sent;
+          user = _context5.sent;
           res.render("profile", {
             isProfile: true,
             user: req.user
@@ -185,7 +229,7 @@ router.get("/:username", _auth["default"], function _callee4(req, res) {
 
         case 4:
         case "end":
-          return _context4.stop();
+          return _context5.stop();
       }
     }
   });

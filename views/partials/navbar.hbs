@@ -1,4 +1,28 @@
 <!-- Navbar -->
+<div class="aboutUser">
+	<div class="d-flex">
+		<div class="left">
+			<div class="d-flex lvStyle">
+				<img src="/img/lv/lv.png" alt="Image" height="45px" width="45px" />
+				<span class="moneySpan">{{user.level}}</span>
+				<button class="navUser" id="navUser">
+					<i class="fa fa-user" aria-hidden="true"></i>
+				</button>
+			</div>
+		</div>
+		<div class="right">
+			<div class="slider">
+				<img src="/img/user/{{userSetting.image}}" alt="Alt 1" />
+				<img src="/img/user/{{userSetting.image}}" alt="Alt 1" />
+				<img src="/img/user/{{userSetting.image}}" alt="Alt 1" />
+				<img src="/img/user/{{userSetting.image}}" alt="Alt 1" />
+				<img src="/img/user/{{userSetting.image}}" alt="Alt 1" />
+				<img src="/img/user/{{userSetting.image}}" alt="Alt 1" />
+			</div>
+		</div>
+	</div>
+	<button class="aboutCloseBtn">X</button>
+</div>
 <nav
 	class="navbar navbar-main navbar-expand-lg px-0 mb-0 pb-0 mx-4 shadow-none border-radius-xl"
 	id="navbarBlur"
@@ -13,7 +37,7 @@
 			<div class="d-flex lvStyle">
 				<img src="/img/lv/lv.png" alt="Image" height="45px" width="45px" />
 				<span class="moneySpan">{{user.level}}</span>
-				<button class="navUser">
+				<button class="navUser" id="navUser">
 					<i class="fa fa-user" aria-hidden="true"></i>
 				</button>
 			</div>
