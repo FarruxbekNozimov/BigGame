@@ -167,114 +167,131 @@ function debounce(n, a, i) {
       e && bootstrap.Toast.getInstance(e).show();
     });
   });
-});
-var total = document.querySelectorAll(".nav-pills");
-
-function initNavs() {
-  total.forEach(function (i, e) {
-    var l = document.createElement("div"),
-        t = i.querySelector("li:first-child .nav-link").cloneNode();
-    t.innerHTML = "-", l.classList.add("moving-tab", "position-absolute", "nav-link"), l.appendChild(t), i.appendChild(l);
-    i.getElementsByTagName("li").length;
-    l.style.padding = "0px", l.style.width = i.querySelector("li:nth-child(1)").offsetWidth + "px", l.style.transform = "translate3d(0px, 0px, 0px)", l.style.transition = ".5s ease", i.onmouseover = function (e) {
-      var t = getEventTarget(e),
-          a = t.closest("li");
-
-      if (a) {
-        var s = Array.from(a.closest("ul").children),
-            n = s.indexOf(a) + 1;
-
-        i.querySelector("li:nth-child(" + n + ") .nav-link").onclick = function () {
-          l = i.querySelector(".moving-tab");
-          var e = 0;
-
-          if (i.classList.contains("flex-column")) {
-            for (var t = 1; t <= s.indexOf(a); t++) {
-              e += i.querySelector("li:nth-child(" + t + ")").offsetHeight;
-            }
-
-            l.style.transform = "translate3d(0px," + e + "px, 0px)", l.style.height = i.querySelector("li:nth-child(" + t + ")").offsetHeight;
-          } else {
-            for (t = 1; t <= s.indexOf(a); t++) {
-              e += i.querySelector("li:nth-child(" + t + ")").offsetWidth;
-            }
-
-            l.style.transform = "translate3d(" + e + "px, 0px, 0px)", l.style.width = i.querySelector("li:nth-child(" + n + ")").offsetWidth + "px";
-          }
-        };
-      }
-    };
-  });
-}
+}); // var total = document.querySelectorAll(".nav-pills");
+// function initNavs() {
+// 	total.forEach(function (i, e) {
+// 		var l = document.createElement("div"),
+// 			t = i.querySelector("li:first-child .nav-link").cloneNode();
+// 		(t.innerHTML = "-"),
+// 			l.classList.add("moving-tab", "position-absolute", "nav-link"),
+// 			l.appendChild(t),
+// 			i.appendChild(l);
+// 		i.getElementsByTagName("li").length;
+// 		(l.style.padding = "0px"),
+// 			(l.style.width = i.querySelector("li:nth-child(1)").offsetWidth + "px"),
+// 			(l.style.transform = "translate3d(0px, 0px, 0px)"),
+// 			(l.style.transition = ".5s ease"),
+// 			(i.onmouseover = function (e) {
+// 				let t = getEventTarget(e),
+// 					a = t.closest("li");
+// 				if (a) {
+// 					let s = Array.from(a.closest("ul").children),
+// 						n = s.indexOf(a) + 1;
+// 					i.querySelector("li:nth-child(" + n + ") .nav-link").onclick =
+// 						function () {
+// 							l = i.querySelector(".moving-tab");
+// 							let e = 0;
+// 							if (i.classList.contains("flex-column")) {
+// 								for (var t = 1; t <= s.indexOf(a); t++)
+// 									e += i.querySelector("li:nth-child(" + t + ")").offsetHeight;
+// 								(l.style.transform = "translate3d(0px," + e + "px, 0px)"),
+// 									(l.style.height = i.querySelector(
+// 										"li:nth-child(" + t + ")"
+// 									).offsetHeight);
+// 							} else {
+// 								for (t = 1; t <= s.indexOf(a); t++)
+// 									e += i.querySelector("li:nth-child(" + t + ")").offsetWidth;
+// 								(l.style.transform = "translate3d(" + e + "px, 0px, 0px)"),
+// 									(l.style.width =
+// 										i.querySelector("li:nth-child(" + n + ")").offsetWidth +
+// 										"px");
+// 							}
+// 						};
+// 				}
+// 			});
+// 	});
+// }
 
 function getEventTarget(e) {
   return (e = e || window.event).target || e.srcElement;
-}
+} // setTimeout(function () {
+// 	initNavs();
+// }, 100),
 
-setTimeout(function () {
-  initNavs();
-}, 100), window.addEventListener("resize", function (e) {
-  total.forEach(function (s, e) {
-    s.querySelector(".moving-tab").remove();
-    var n = document.createElement("div"),
-        a = s.querySelector(".nav-link.active").cloneNode();
-    a.innerHTML = "-", n.classList.add("moving-tab", "position-absolute", "nav-link"), n.appendChild(a), s.appendChild(n), n.style.padding = "0px", n.style.transition = ".5s ease";
-    var i = s.querySelector(".nav-link.active").parentElement;
 
-    if (i) {
-      var _e4 = Array.from(i.closest("ul").children);
-
-      a = _e4.indexOf(i) + 1;
-      var t = 0;
-
-      if (s.classList.contains("flex-column")) {
-        for (var l = 1; l <= _e4.indexOf(i); l++) {
-          t += s.querySelector("li:nth-child(" + l + ")").offsetHeight;
-        }
-
-        n.style.transform = "translate3d(0px," + t + "px, 0px)", n.style.width = s.querySelector("li:nth-child(" + a + ")").offsetWidth + "px", n.style.height = s.querySelector("li:nth-child(" + l + ")").offsetHeight;
-      } else {
-        for (l = 1; l <= _e4.indexOf(i); l++) {
-          t += s.querySelector("li:nth-child(" + l + ")").offsetWidth;
-        }
-
-        n.style.transform = "translate3d(" + t + "px, 0px, 0px)", n.style.width = s.querySelector("li:nth-child(" + a + ")").offsetWidth + "px";
-      }
-    }
-  }), window.innerWidth < 991 ? total.forEach(function (n, e) {
-    if (!n.classList.contains("flex-column")) {
-      n.classList.remove("flex-row"), n.classList.add("flex-column", "on-resize");
-      var _e5 = n.querySelector(".nav-link.active").parentElement,
-          t = Array.from(_e5.closest("ul").children);
-      t.indexOf(_e5);
-      var s = 0;
-
-      for (var a = 1; a <= t.indexOf(_e5); a++) {
-        s += n.querySelector("li:nth-child(" + a + ")").offsetHeight;
-      }
-
-      var i = document.querySelector(".moving-tab");
-      i.style.width = n.querySelector("li:nth-child(1)").offsetWidth + "px", i.style.transform = "translate3d(0px," + s + "px, 0px)";
-    }
-  }) : total.forEach(function (n, e) {
-    if (n.classList.contains("on-resize")) {
-      n.classList.remove("flex-column", "on-resize"), n.classList.add("flex-row");
-      var _e6 = n.querySelector(".nav-link.active").parentElement,
-          t = Array.from(_e6.closest("ul").children);
-      var a = t.indexOf(_e6) + 1;
-      var s = 0;
-
-      for (var i = 1; i <= t.indexOf(_e6); i++) {
-        s += n.querySelector("li:nth-child(" + i + ")").offsetWidth;
-      }
-
-      var l = document.querySelector(".moving-tab");
-      l.style.transform = "translate3d(" + s + "px, 0px, 0px)", l.style.width = n.querySelector("li:nth-child(" + a + ")").offsetWidth + "px";
-    }
-  });
-}), window.innerWidth < 991 && total.forEach(function (e, t) {
-  e.classList.contains("flex-row") && (e.classList.remove("flex-row"), e.classList.add("flex-column", "on-resize"));
-}), window.onload = function () {
+window.addEventListener("resize", function (e) {// total.forEach(function (s, e) {
+  // 	s.querySelector(".moving-tab").remove();
+  // 	var n = document.createElement("div"),
+  // 		a = s.querySelector(".nav-link.active").cloneNode();
+  // 	(a.innerHTML = "-"),
+  // 		n.classList.add("moving-tab", "position-absolute", "nav-link"),
+  // 		n.appendChild(a),
+  // 		s.appendChild(n),
+  // 		(n.style.padding = "0px"),
+  // 		(n.style.transition = ".5s ease");
+  // 	let i = s.querySelector(".nav-link.active").parentElement;
+  // 	if (i) {
+  // 		let e = Array.from(i.closest("ul").children);
+  // 		a = e.indexOf(i) + 1;
+  // 		let t = 0;
+  // 		if (s.classList.contains("flex-column")) {
+  // 			for (var l = 1; l <= e.indexOf(i); l++)
+  // 				t += s.querySelector("li:nth-child(" + l + ")").offsetHeight;
+  // 			(n.style.transform = "translate3d(0px," + t + "px, 0px)"),
+  // 				(n.style.width =
+  // 					s.querySelector("li:nth-child(" + a + ")").offsetWidth + "px"),
+  // 				(n.style.height = s.querySelector(
+  // 					"li:nth-child(" + l + ")"
+  // 				).offsetHeight);
+  // 		} else {
+  // 			for (l = 1; l <= e.indexOf(i); l++)
+  // 				t += s.querySelector("li:nth-child(" + l + ")").offsetWidth;
+  // 			(n.style.transform = "translate3d(" + t + "px, 0px, 0px)"),
+  // 				(n.style.width =
+  // 					s.querySelector("li:nth-child(" + a + ")").offsetWidth + "px");
+  // 		}
+  // 	}
+  // }),
+  // window.innerWidth < 991
+  // 	? total.forEach(function (n, e) {
+  // 			if (!n.classList.contains("flex-column")) {
+  // 				n.classList.remove("flex-row"),
+  // 					n.classList.add("flex-column", "on-resize");
+  // 				let e = n.querySelector(".nav-link.active").parentElement,
+  // 					t = Array.from(e.closest("ul").children);
+  // 				t.indexOf(e);
+  // 				let s = 0;
+  // 				for (var a = 1; a <= t.indexOf(e); a++)
+  // 					s += n.querySelector("li:nth-child(" + a + ")").offsetHeight;
+  // 				var i = document.querySelector(".moving-tab");
+  // 				(i.style.width =
+  // 					n.querySelector("li:nth-child(1)").offsetWidth + "px"),
+  // 					(i.style.transform = "translate3d(0px," + s + "px, 0px)");
+  // 			}
+  // 	  })
+  // 	: total.forEach(function (n, e) {
+  // 			if (n.classList.contains("on-resize")) {
+  // 				n.classList.remove("flex-column", "on-resize"),
+  // 					n.classList.add("flex-row");
+  // 				let e = n.querySelector(".nav-link.active").parentElement,
+  // 					t = Array.from(e.closest("ul").children);
+  // 				var a = t.indexOf(e) + 1;
+  // 				let s = 0;
+  // 				for (var i = 1; i <= t.indexOf(e); i++)
+  // 					s += n.querySelector("li:nth-child(" + i + ")").offsetWidth;
+  // 				var l = document.querySelector(".moving-tab");
+  // 				(l.style.transform = "translate3d(" + s + "px, 0px, 0px)"),
+  // 					(l.style.width =
+  // 						n.querySelector("li:nth-child(" + a + ")").offsetWidth + "px");
+  // 			}
+  // 	  });
+}), // window.innerWidth < 991 &&
+// 	total.forEach(function (e, t) {
+// 		e.classList.contains("flex-row") &&
+// 			(e.classList.remove("flex-row"),
+// 			e.classList.add("flex-column", "on-resize"));
+// 	}),
+window.onload = function () {
   for (var e = document.querySelectorAll("input"), t = 0; t < e.length; t++) {
     e[t].addEventListener("focus", function (e) {
       this.parentElement.classList.add("is-focused");
@@ -442,34 +459,48 @@ function darkMode(e) {
   }
 }
 
-window.addEventListener("resize", navbarColorOnResize), window.addEventListener("resize", sidenavTypeOnResize), window.addEventListener("load", sidenavTypeOnResize); // if (location.href.includes("profile")) {
-// 	// try {
-// 	profilePassword.addEventListener("input", () => {
-// 		let profileSendBtns = document.getElementsByClassName("profileSendBtn");
-// 		if (profilePassword.value != profilePasswordCon.value) {
-// 			for (let i in profileSendBtns) profileSendBtns[i].disabled = true;
-// 		} else {
-// 			for (let i in profileSendBtns) profileSendBtns[i].disabled = false;
-// 		}
-// 	});
-// 	function changeSetting(x) {
-// 		let tabContents = document.getElementsByClassName("tabContents");
-// 		console.log(tabContents);
-// 		for (let j in tabContents) {
-// 			console.log(j);
-// 			if (x.id != tabContents[j].id) {
-// 				console.log(tabContents[j]);
-// 				tabContents[j].classList.add("d-none");
-// 				continue;
-// 			}
-// 			tabContents[j].classList.remove("d-none");
-// 		}
-// 	}
-// 	let tabs = document.getElementsByClassName("tabs");
-// 	for (let i in tabs) {
-// 		tabs[i].onclick = changeSetting(tabs[i]);
-// 	}
-// 	// } catch (error) {
-// 	// 	console.log(error.name);
-// 	// }
-// }
+window.addEventListener("resize", navbarColorOnResize), window.addEventListener("resize", sidenavTypeOnResize), window.addEventListener("load", sidenavTypeOnResize);
+
+if (location.href.includes("profile")) {
+  (function () {
+    // try {
+    var tabs = document.getElementsByClassName("tabs");
+    var tabContents = document.querySelectorAll(".tabContents");
+
+    var _loop = function _loop(i) {
+      tabs[i].addEventListener("click", function () {
+        for (var j = 0; j < tabContents.length; j++) {
+          tabs[j].classList.remove("active");
+
+          if (tabs[i].id != tabContents[j].id) {
+            tabContents[j].classList.add("d-none");
+          } else {
+            tabContents[j].classList.remove("d-none");
+          }
+        }
+
+        tabs[i].classList.add("active");
+      });
+    };
+
+    for (var i = 0; i < tabs.length; i++) {
+      _loop(i);
+    }
+
+    profilePassword.addEventListener("input", function () {
+      var profileSendBtns = document.getElementsByClassName("profileSendBtn");
+
+      if (profilePassword.value != profilePasswordCon.value) {
+        for (var _i in profileSendBtns) {
+          profileSendBtns[_i].disabled = true;
+        }
+      } else {
+        for (var _i2 in profileSendBtns) {
+          profileSendBtns[_i2].disabled = false;
+        }
+      }
+    }); // } catch (error) {
+    // 	console.log(error.name);
+    // }
+  })();
+}

@@ -43,7 +43,6 @@ router.get("/profile", authMiddleware, async (req, res) => {
 });
 
 router.post("/profile", async (req, res) => {
-	console.log(req.body);
 	let {
 		userImageURL,
 		fullName,

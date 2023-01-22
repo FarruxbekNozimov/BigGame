@@ -138,18 +138,17 @@ router.post("/profile", function _callee4(req, res) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          console.log(req.body);
           _req$body = req.body, userImageURL = _req$body.userImageURL, fullName = _req$body.fullName, gender = _req$body.gender, mobilePhone = _req$body.mobilePhone, location = _req$body.location, description = _req$body.description, username = _req$body.username, email = _req$body.email, password = _req$body.password, passwordCon = _req$body.passwordCon, telegramLink = _req$body.telegramLink, instagramLink = _req$body.instagramLink, facebookLink = _req$body.facebookLink, websiteLink = _req$body.websiteLink;
 
           if (!(password != passwordCon)) {
-            _context4.next = 5;
+            _context4.next = 4;
             break;
           }
 
           req.flash("settingError", "Passwords do not match");
           return _context4.abrupt("return", res.redirect("/profile"));
 
-        case 5:
+        case 4:
           // IMAGE DOWNLOADER
           userImage = req.files ? req.files["userImage"] : null;
 
@@ -169,7 +168,7 @@ router.post("/profile", function _callee4(req, res) {
 
 
           password = (0, _hashing.hashing)(password);
-          _context4.next = 10;
+          _context4.next = 9;
           return regeneratorRuntime.awrap(_User["default"].findOneAndUpdate(req.user._id, {
             username: username,
             email: email,
@@ -178,9 +177,9 @@ router.post("/profile", function _callee4(req, res) {
             upsert: true
           }));
 
-        case 10:
+        case 9:
           updateUser = _context4.sent;
-          _context4.next = 13;
+          _context4.next = 12;
           return regeneratorRuntime.awrap(_Setting["default"].findOneAndUpdate({
             userId: req.user._id
           }, {
@@ -198,11 +197,11 @@ router.post("/profile", function _callee4(req, res) {
             upsert: true
           }));
 
-        case 13:
+        case 12:
           updateSetting = _context4.sent;
           res.redirect("/profile");
 
-        case 15:
+        case 14:
         case "end":
           return _context4.stop();
       }
