@@ -53,8 +53,8 @@ app.use(varMiddleware);
 app.use(userMiddleware);
 
 app.use(AuthRoutes);
-app.use(GameRoutes);
 app.use(UserRoutes);
+app.use(GameRoutes);
 
 const PORT = process.env.PORT || 7700;
 
@@ -65,7 +65,8 @@ const startApp = () => {
 			console.log("Mongo DB connected")
 		);
 		const PORT = process.env.PORT || 7700;
-		app.listen(PORT, () => console.log(`Server is running ${PORT}`));
+		const HOST = "0.0.0.0";
+		app.listen(PORT, HOST, () => console.log(`Server is running ${PORT}`));
 	} catch (error) {
 		console.log(error);
 	}

@@ -11,33 +11,27 @@ import downloadImg from "../utils/download.js";
 import { hashing, unhashing } from "../utils/hashing.js";
 
 router.get("/", authMiddleware, async (req, res) => {
-	let user = await User.findById(req.user._id);
-	let userSetting = await Setting.findOne({ userId: user._id });
 	res.render("index", {
 		isIndex: true,
 		user: req.user,
 		user: { ...req.user, password: unhashing(req.user.password) },
-		userSetting: userSetting,
+		userSetting: req.userSetting,
 	});
 });
 
 router.get("/pay", authMiddleware, async (req, res) => {
-	let user = await User.findById(req.user._id);
-	let userSetting = await Setting.findOne({ userId: user._id });
 	res.render("pay", {
 		user: req.user,
 		user: { ...req.user, password: unhashing(req.user.password) },
-		userSetting: userSetting,
+		userSetting: req.userSetting,
 	});
 });
 
 router.get("/profile", authMiddleware, async (req, res) => {
-	let user = await User.findById(req.user._id);
-	let userSetting = await Setting.findOne({ userId: user._id });
 	res.render("userSetting", {
 		isProfile: true,
 		user: { ...req.user, password: unhashing(req.user.password) },
-		userSetting: userSetting,
+		userSetting: req.userSetting,
 		settingError: req.flash("settingError"),
 	});
 });
@@ -112,11 +106,11 @@ router.post("/profile", async (req, res) => {
 	res.redirect("/profile");
 });
 
-router.get("/:username", authMiddleware, async (req, res) => {
-	let user = await User.findOne({ username: req.params.username });
-	res.render("profile", {
-		isProfile: true,
-		user: req.user,
-	});
-});
+// router.get("/:username", authMiddleware, async (req, res) => {
+// 	let user = await User.findOne({ username: req.params.username });
+// 	res.render("profile", {
+// 		isProfile: true,
+// 		user: req.user,
+// 	});
+// });
 export default router;

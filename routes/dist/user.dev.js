@@ -33,31 +33,18 @@ var router = (0, _express.Router)();
 router.get("/", _auth["default"], function _callee(req, res) {
   var _res$render;
 
-  var user, userSetting;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
-          return regeneratorRuntime.awrap(_User["default"].findById(req.user._id));
-
-        case 2:
-          user = _context.sent;
-          _context.next = 5;
-          return regeneratorRuntime.awrap(_Setting["default"].findOne({
-            userId: user._id
-          }));
-
-        case 5:
-          userSetting = _context.sent;
           res.render("index", (_res$render = {
             isIndex: true,
             user: req.user
           }, _defineProperty(_res$render, "user", _objectSpread({}, req.user, {
             password: (0, _hashing.unhashing)(req.user.password)
-          })), _defineProperty(_res$render, "userSetting", userSetting), _res$render));
+          })), _defineProperty(_res$render, "userSetting", req.userSetting), _res$render));
 
-        case 7:
+        case 1:
         case "end":
           return _context.stop();
       }
@@ -67,30 +54,17 @@ router.get("/", _auth["default"], function _callee(req, res) {
 router.get("/pay", _auth["default"], function _callee2(req, res) {
   var _res$render2;
 
-  var user, userSetting;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _context2.next = 2;
-          return regeneratorRuntime.awrap(_User["default"].findById(req.user._id));
-
-        case 2:
-          user = _context2.sent;
-          _context2.next = 5;
-          return regeneratorRuntime.awrap(_Setting["default"].findOne({
-            userId: user._id
-          }));
-
-        case 5:
-          userSetting = _context2.sent;
           res.render("pay", (_res$render2 = {
             user: req.user
           }, _defineProperty(_res$render2, "user", _objectSpread({}, req.user, {
             password: (0, _hashing.unhashing)(req.user.password)
-          })), _defineProperty(_res$render2, "userSetting", userSetting), _res$render2));
+          })), _defineProperty(_res$render2, "userSetting", req.userSetting), _res$render2));
 
-        case 7:
+        case 1:
         case "end":
           return _context2.stop();
       }
@@ -98,33 +72,20 @@ router.get("/pay", _auth["default"], function _callee2(req, res) {
   });
 });
 router.get("/profile", _auth["default"], function _callee3(req, res) {
-  var user, userSetting;
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          _context3.next = 2;
-          return regeneratorRuntime.awrap(_User["default"].findById(req.user._id));
-
-        case 2:
-          user = _context3.sent;
-          _context3.next = 5;
-          return regeneratorRuntime.awrap(_Setting["default"].findOne({
-            userId: user._id
-          }));
-
-        case 5:
-          userSetting = _context3.sent;
           res.render("userSetting", {
             isProfile: true,
             user: _objectSpread({}, req.user, {
               password: (0, _hashing.unhashing)(req.user.password)
             }),
-            userSetting: userSetting,
+            userSetting: req.userSetting,
             settingError: req.flash("settingError")
           });
 
-        case 7:
+        case 1:
         case "end":
           return _context3.stop();
       }
@@ -207,31 +168,13 @@ router.post("/profile", function _callee4(req, res) {
       }
     }
   });
-});
-router.get("/:username", _auth["default"], function _callee5(req, res) {
-  var user;
-  return regeneratorRuntime.async(function _callee5$(_context5) {
-    while (1) {
-      switch (_context5.prev = _context5.next) {
-        case 0:
-          _context5.next = 2;
-          return regeneratorRuntime.awrap(_User["default"].findOne({
-            username: req.params.username
-          }));
+}); // router.get("/:username", authMiddleware, async (req, res) => {
+// 	let user = await User.findOne({ username: req.params.username });
+// 	res.render("profile", {
+// 		isProfile: true,
+// 		user: req.user,
+// 	});
+// });
 
-        case 2:
-          user = _context5.sent;
-          res.render("profile", {
-            isProfile: true,
-            user: req.user
-          });
-
-        case 4:
-        case "end":
-          return _context5.stop();
-      }
-    }
-  });
-});
 var _default = router;
 exports["default"] = _default;

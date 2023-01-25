@@ -73,8 +73,8 @@ app.use((0, _connectFlash["default"])()); // Use Middleware
 app.use(_var["default"]);
 app.use(_user["default"]);
 app.use(_auth["default"]);
-app.use(_game["default"]);
 app.use(_user2["default"]);
+app.use(_game["default"]);
 var PORT = process.env.PORT || 7700;
 
 var startApp = function startApp() {
@@ -89,7 +89,8 @@ var startApp = function startApp() {
 
     var _PORT = process.env.PORT || 7700;
 
-    app.listen(_PORT, function () {
+    var HOST = "0.0.0.0";
+    app.listen(_PORT, HOST, function () {
       return console.log("Server is running ".concat(_PORT));
     });
   } catch (error) {
